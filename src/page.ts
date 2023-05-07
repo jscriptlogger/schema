@@ -1,4 +1,5 @@
 import {Request} from "./Request";
+import {Result} from "./Result";
 import {void_t} from "./void";
 import {objectId} from "./objectId";
 import {Value} from "./value";
@@ -19,29 +20,29 @@ import {decodeObjectId as decodeObjectId4} from "./objectId";
 import {defaultObjectId as defaultObjectId5} from "./objectId";
 import {compareObjectId as compareObjectId6} from "./objectId";
 import {compareObjectId as compareObjectId7} from "./objectId";
-export interface initPageResultInputParams {
+export interface createPageResultInputParams {
     id: Readonly<objectId>;
 }
-export function initPageResult(params: initPageResultInputParams): initPageResult {
+export function createPageResult(params: createPageResultInputParams): createPageResult {
     return {
-        _name: 'page.initPageResult',
+        _name: 'page.createPageResult',
         id: params['id']
     };
 }
-export function encodeInitPageResult(__s: ISerializer, value: initPageResult) {
-    __s.writeInt32(-70087457);
+export function encodeCreatePageResult(__s: ISerializer, value: createPageResult) {
+    __s.writeInt32(-1422046958);
     /**
      * encoding param: id
      */
     const __pv0 = value['id'];
     encodeObjectId(__s,__pv0);
 }
-export function decodeInitPageResult(__d: IDeserializer): initPageResult | null {
+export function decodeCreatePageResult(__d: IDeserializer): createPageResult | null {
     const __id = __d.readInt32();
     /**
      * decode header
      */
-    if(__id !== -70087457) return null;
+    if(__id !== -1422046958) return null;
     let id: objectId;
     /**
      * decoding param: id
@@ -50,21 +51,21 @@ export function decodeInitPageResult(__d: IDeserializer): initPageResult | null 
     if(tmp2 === null) return null;
     id = tmp2;
     return {
-        _name: 'page.initPageResult',
+        _name: 'page.createPageResult',
         id
     };
 }
-export interface initPageResult  {
-    _name: 'page.initPageResult';
+export interface createPageResult  {
+    _name: 'page.createPageResult';
     id: Readonly<objectId>;
 }
-export function defaultInitPageResult(params: Partial<initPageResultInputParams> = {}): initPageResult {
-    return initPageResult({
+export function defaultCreatePageResult(params: Partial<createPageResultInputParams> = {}): createPageResult {
+    return createPageResult({
         id: defaultObjectId(),
         ...params
     });
 }
-export function compareInitPageResult(__a: initPageResult, __b: initPageResult): boolean {
+export function compareCreatePageResult(__a: createPageResult, __b: createPageResult): boolean {
     return (
         /**
          * compare parameter id
@@ -72,10 +73,10 @@ export function compareInitPageResult(__a: initPageResult, __b: initPageResult):
         compareObjectId(__a['id'],__b['id'])
     );
 }
-export function updateInitPageResult(value: initPageResult, changes: Partial<initPageResultInputParams>) {
+export function updateCreatePageResult(value: createPageResult, changes: Partial<createPageResultInputParams>) {
     if(typeof changes['id'] !== 'undefined') {
         if(!(compareObjectId1(changes['id'],value['id']))) {
-            value = initPageResult({
+            value = createPageResult({
                 ...value,
                 id: changes['id'],
             });
@@ -83,50 +84,50 @@ export function updateInitPageResult(value: initPageResult, changes: Partial<ini
     }
     return value;
 }
-export interface InitPageInputParams {
+export interface CreatePageInputParams {
     title: string;
 }
-export function InitPage(params: InitPageInputParams): InitPage {
+export function CreatePage(params: CreatePageInputParams): CreatePage {
     return {
-        _name: 'page.InitPage',
+        _name: 'page.CreatePage',
         title: params['title']
     };
 }
-export function encodeInitPage(__s: ISerializer, value: InitPage) {
-    __s.writeInt32(-1026707742);
+export function encodeCreatePage(__s: ISerializer, value: CreatePage) {
+    __s.writeInt32(87968832);
     /**
      * encoding param: title
      */
     const __pv0 = value['title'];
     __s.writeString(__pv0);
 }
-export function decodeInitPage(__d: IDeserializer): InitPage | null {
+export function decodeCreatePage(__d: IDeserializer): CreatePage | null {
     const __id = __d.readInt32();
     /**
      * decode header
      */
-    if(__id !== -1026707742) return null;
+    if(__id !== 87968832) return null;
     let title: string;
     /**
      * decoding param: title
      */
     title = __d.readString();
     return {
-        _name: 'page.InitPage',
+        _name: 'page.CreatePage',
         title
     };
 }
-export interface InitPage extends IRequest<Readonly<initPageResult>> {
-    _name: 'page.InitPage';
+export interface CreatePage extends IRequest<Readonly<createPageResult>> {
+    _name: 'page.CreatePage';
     title: string;
 }
-export function defaultInitPage(params: Partial<InitPageInputParams> = {}): InitPage {
-    return InitPage({
+export function defaultCreatePage(params: Partial<CreatePageInputParams> = {}): CreatePage {
+    return CreatePage({
         title: "",
         ...params
     });
 }
-export function compareInitPage(__a: InitPage, __b: InitPage): boolean {
+export function compareCreatePage(__a: CreatePage, __b: CreatePage): boolean {
     return (
         /**
          * compare parameter title
@@ -134,10 +135,10 @@ export function compareInitPage(__a: InitPage, __b: InitPage): boolean {
         __a['title'] === __b['title']
     );
 }
-export function updateInitPage(value: InitPage, changes: Partial<InitPageInputParams>) {
+export function updateCreatePage(value: CreatePage, changes: Partial<CreatePageInputParams>) {
     if(typeof changes['title'] !== 'undefined') {
         if(!(changes['title'] === value['title'])) {
-            value = InitPage({
+            value = CreatePage({
                 ...value,
                 title: changes['title'],
             });

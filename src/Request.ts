@@ -1,23 +1,23 @@
 import {SaveValue} from "./value";
 import {GetValueById} from "./value";
-import {InitPage} from "./page";
+import {CreatePage} from "./page";
 import {AddPageItem} from "./page";
 import {ISerializer} from "./__types__";
 import {encodeSaveValue} from "./value";
 import {encodeGetValueById} from "./value";
-import {encodeInitPage} from "./page";
+import {encodeCreatePage} from "./page";
 import {encodeAddPageItem} from "./page";
 import {IDeserializer} from "./__types__";
 import {decodeSaveValue} from "./value";
 import {decodeGetValueById} from "./value";
-import {decodeInitPage} from "./page";
+import {decodeCreatePage} from "./page";
 import {decodeAddPageItem} from "./page";
 import {defaultSaveValue} from "./value";
 import {compareSaveValue} from "./value";
 import {compareGetValueById} from "./value";
-import {compareInitPage} from "./page";
+import {compareCreatePage} from "./page";
 import {compareAddPageItem} from "./page";
-export type Request = Readonly<SaveValue> | Readonly<GetValueById> | Readonly<InitPage> | Readonly<AddPageItem>;
+export type Request = Readonly<SaveValue> | Readonly<GetValueById> | Readonly<CreatePage> | Readonly<AddPageItem>;
 export function encodeRequestTrait(__s: ISerializer,value: Request) {
     switch(value._name) {
         case 'value.SaveValue':
@@ -26,8 +26,8 @@ export function encodeRequestTrait(__s: ISerializer,value: Request) {
         case 'value.GetValueById':
             encodeGetValueById(__s,value);
             break;
-        case 'page.InitPage':
-            encodeInitPage(__s,value);
+        case 'page.CreatePage':
+            encodeCreatePage(__s,value);
             break;
         case 'page.AddPageItem':
             encodeAddPageItem(__s,value);
@@ -37,7 +37,7 @@ export function encodeRequestTrait(__s: ISerializer,value: Request) {
 export function decodeRequestTrait(__d: IDeserializer) {
     const __id = __d.readInt32();
     __d.rewindInt32();
-    let value: SaveValue | GetValueById | InitPage | AddPageItem;
+    let value: SaveValue | GetValueById | CreatePage | AddPageItem;
     switch(__id) {
         case -1279092661: {
             const tmp = decodeSaveValue(__d);
@@ -51,8 +51,8 @@ export function decodeRequestTrait(__d: IDeserializer) {
             value = tmp;
             break;
         }
-        case -1026707742: {
-            const tmp = decodeInitPage(__d);
+        case 87968832: {
+            const tmp = decodeCreatePage(__d);
             if(tmp === null) return null;
             value = tmp;
             break;
@@ -78,9 +78,9 @@ export function compareRequestTrait(__a: Request, __b: Request) {
         case 'value.GetValueById':
             if(__b._name !== "value.GetValueById") return false;
             return compareGetValueById(__a,__b);
-        case 'page.InitPage':
-            if(__b._name !== "page.InitPage") return false;
-            return compareInitPage(__a,__b);
+        case 'page.CreatePage':
+            if(__b._name !== "page.CreatePage") return false;
+            return compareCreatePage(__a,__b);
         case 'page.AddPageItem':
             if(__b._name !== "page.AddPageItem") return false;
             return compareAddPageItem(__a,__b);
