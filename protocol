@@ -1,6 +1,7 @@
 import { Request } from "./Request";
 import { Result } from "./Result";
 import { Error } from "./Error";
+import { void_t } from "./void";
 
 trait Message {}
 
@@ -22,4 +23,8 @@ type messageResultError : Message {
 
 type messageProtocolError : Message {
   Error error;
+}
+
+type ackMessage {
+  long messageId;
 }

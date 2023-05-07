@@ -3,8 +3,6 @@ import { Value } from "./Value";
 import { Result } from "./Result";
 import "./protocol";
 
-export type void_t : Result {}
-
 trait Operation {}
 
 type operationLog : Operation {

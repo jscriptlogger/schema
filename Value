@@ -37,3 +37,11 @@ export type saveValueResult : Result {
 export call SaveValue : Request => saveValueResult {
   Value value;
 }
+
+type initPageResult {
+  objectId id;
+}
+
+export call InitPage : Request => initPageResult {
+  string title;
+}

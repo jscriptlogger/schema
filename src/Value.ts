@@ -14,6 +14,11 @@ import {defaultObjectId as defaultObjectId4} from "./objectId";
 import {compareObjectId as compareObjectId5} from "./objectId";
 import {compareObjectId as compareObjectId6} from "./objectId";
 import {IRequest} from "./__types__";
+import {encodeObjectId as encodeObjectId7} from "./objectId";
+import {decodeObjectId as decodeObjectId8} from "./objectId";
+import {defaultObjectId as defaultObjectId9} from "./objectId";
+import {compareObjectId as compareObjectId10} from "./objectId";
+import {compareObjectId as compareObjectId11} from "./objectId";
 export type ObjectKey = Readonly<valueNumber> | Readonly<valueString>;
 export function encodeObjectKeyTrait(__s: ISerializer,value: ObjectKey) {
     switch(value._name) {
@@ -746,6 +751,132 @@ export function updateSaveValue(value: SaveValue, changes: Partial<SaveValueInpu
             value = SaveValue({
                 ...value,
                 value: changes['value'],
+            });
+        }
+    }
+    return value;
+}
+export interface initPageResultInputParams {
+    id: Readonly<objectId>;
+}
+export function initPageResult(params: initPageResultInputParams): initPageResult {
+    return {
+        _name: 'value.initPageResult',
+        id: params['id']
+    };
+}
+export function encodeInitPageResult(__s: ISerializer, value: initPageResult) {
+    __s.writeInt32(-1862652875);
+    /**
+     * encoding param: id
+     */
+    const __pv0 = value['id'];
+    encodeObjectId7(__s,__pv0);
+}
+export function decodeInitPageResult(__d: IDeserializer): initPageResult | null {
+    const __id = __d.readInt32();
+    /**
+     * decode header
+     */
+    if(__id !== -1862652875) return null;
+    let id: objectId;
+    /**
+     * decoding param: id
+     */
+    const tmp2 = decodeObjectId8(__d);
+    if(tmp2 === null) return null;
+    id = tmp2;
+    return {
+        _name: 'value.initPageResult',
+        id
+    };
+}
+export interface initPageResult  {
+    _name: 'value.initPageResult';
+    id: Readonly<objectId>;
+}
+export function defaultInitPageResult(params: Partial<initPageResultInputParams> = {}): initPageResult {
+    return initPageResult({
+        id: defaultObjectId(),
+        ...params
+    });
+}
+export function compareInitPageResult(__a: initPageResult, __b: initPageResult): boolean {
+    return (
+        /**
+         * compare parameter id
+         */
+        compareObjectId10(__a['id'],__b['id'])
+    );
+}
+export function updateInitPageResult(value: initPageResult, changes: Partial<initPageResultInputParams>) {
+    if(typeof changes['id'] !== 'undefined') {
+        if(!(compareObjectId11(changes['id'],value['id']))) {
+            value = initPageResult({
+                ...value,
+                id: changes['id'],
+            });
+        }
+    }
+    return value;
+}
+export interface InitPageInputParams {
+    title: string;
+}
+export function InitPage(params: InitPageInputParams): InitPage {
+    return {
+        _name: 'value.InitPage',
+        title: params['title']
+    };
+}
+export function encodeInitPage(__s: ISerializer, value: InitPage) {
+    __s.writeInt32(1916033193);
+    /**
+     * encoding param: title
+     */
+    const __pv0 = value['title'];
+    __s.writeString(__pv0);
+}
+export function decodeInitPage(__d: IDeserializer): InitPage | null {
+    const __id = __d.readInt32();
+    /**
+     * decode header
+     */
+    if(__id !== 1916033193) return null;
+    let title: string;
+    /**
+     * decoding param: title
+     */
+    title = __d.readString();
+    return {
+        _name: 'value.InitPage',
+        title
+    };
+}
+export interface InitPage extends IRequest<Readonly<initPageResult>> {
+    _name: 'value.InitPage';
+    title: string;
+}
+export function defaultInitPage(params: Partial<InitPageInputParams> = {}): InitPage {
+    return InitPage({
+        title: "",
+        ...params
+    });
+}
+export function compareInitPage(__a: InitPage, __b: InitPage): boolean {
+    return (
+        /**
+         * compare parameter title
+         */
+        __a['title'] === __b['title']
+    );
+}
+export function updateInitPage(value: InitPage, changes: Partial<InitPageInputParams>) {
+    if(typeof changes['title'] !== 'undefined') {
+        if(!(changes['title'] === value['title'])) {
+            value = InitPage({
+                ...value,
+                title: changes['title'],
             });
         }
     }

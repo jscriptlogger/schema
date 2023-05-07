@@ -1,6 +1,7 @@
 import {Request} from "./Request";
 import {Result} from "./Result";
 import {Error} from "./Error";
+import {void_t} from "./void";
 import {ISerializer} from "./__types__";
 import {IDeserializer} from "./__types__";
 import {encodeRequestTrait} from "./Request";
@@ -451,6 +452,68 @@ export function updateMessageProtocolError(value: messageProtocolError, changes:
             value = messageProtocolError({
                 ...value,
                 error: changes['error'],
+            });
+        }
+    }
+    return value;
+}
+export interface ackMessageInputParams {
+    messageId: string;
+}
+export function ackMessage(params: ackMessageInputParams): ackMessage {
+    return {
+        _name: 'protocol.ackMessage',
+        messageId: params['messageId']
+    };
+}
+export function encodeAckMessage(__s: ISerializer, value: ackMessage) {
+    __s.writeInt32(2081880862);
+    /**
+     * encoding param: messageId
+     */
+    const __pv0 = value['messageId'];
+    __s.writeSignedLong(__pv0);
+}
+export function decodeAckMessage(__d: IDeserializer): ackMessage | null {
+    const __id = __d.readInt32();
+    /**
+     * decode header
+     */
+    if(__id !== 2081880862) return null;
+    let messageId: string;
+    /**
+     * decoding param: messageId
+     */
+    messageId = __d.readSignedLong();
+    return {
+        _name: 'protocol.ackMessage',
+        messageId
+    };
+}
+export interface ackMessage  {
+    _name: 'protocol.ackMessage';
+    messageId: string;
+}
+export function defaultAckMessage(params: Partial<ackMessageInputParams> = {}): ackMessage {
+    return ackMessage({
+        messageId: "0",
+        ...params
+    });
+}
+export function compareAckMessage(__a: ackMessage, __b: ackMessage): boolean {
+    return (
+        /**
+         * compare parameter messageId
+         */
+        __a['messageId'] === __b['messageId']
+    );
+}
+export function updateAckMessage(value: ackMessage, changes: Partial<ackMessageInputParams>) {
+    if(typeof changes['messageId'] !== 'undefined') {
+        if(!(changes['messageId'] === value['messageId'])) {
+            value = ackMessage({
+                ...value,
+                messageId: changes['messageId'],
             });
         }
     }

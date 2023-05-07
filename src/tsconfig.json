@@ -10,6 +10,7 @@
         "./Result.ts",
         "./Request.ts",
         "./protocol.ts",
+        "./void.ts",
         "./schema.ts",
         "./__types__.ts"
     ],
