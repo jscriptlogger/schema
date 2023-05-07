@@ -1,14 +1,14 @@
 
 export trait Error {}
 
-export type ErrorMessageDecodingFailure : Error {
+export type errorMessageDecodingFailure : Error {
 
 }
 
-export type ErrorDatabaseFailure : Error {
+export type errorDatabaseFailure : Error {
 
 }
 
-export type ErrorUnknownFailure : Error {
+export type errorUnknownFailure : Error {
 
 }

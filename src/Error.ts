@@ -1,15 +1,15 @@
 import {ISerializer} from "./__types__";
 import {IDeserializer} from "./__types__";
-export type Error = Readonly<ErrorMessageDecodingFailure> | Readonly<ErrorDatabaseFailure> | Readonly<ErrorUnknownFailure>;
+export type Error = Readonly<errorMessageDecodingFailure> | Readonly<errorDatabaseFailure> | Readonly<errorUnknownFailure>;
 export function encodeErrorTrait(__s: ISerializer,value: Error) {
     switch(value._name) {
-        case 'error.ErrorMessageDecodingFailure':
+        case 'error.errorMessageDecodingFailure':
             encodeErrorMessageDecodingFailure(__s,value);
             break;
-        case 'error.ErrorDatabaseFailure':
+        case 'error.errorDatabaseFailure':
             encodeErrorDatabaseFailure(__s,value);
             break;
-        case 'error.ErrorUnknownFailure':
+        case 'error.errorUnknownFailure':
             encodeErrorUnknownFailure(__s,value);
             break;
     }
@@ -17,21 +17,21 @@ export function encodeErrorTrait(__s: ISerializer,value: Error) {
 export function decodeErrorTrait(__d: IDeserializer) {
     const __id = __d.readInt32();
     __d.rewindInt32();
-    let value: ErrorMessageDecodingFailure | ErrorDatabaseFailure | ErrorUnknownFailure;
+    let value: errorMessageDecodingFailure | errorDatabaseFailure | errorUnknownFailure;
     switch(__id) {
-        case 280485814: {
+        case -244340814: {
             const tmp = decodeErrorMessageDecodingFailure(__d);
             if(tmp === null) return null;
             value = tmp;
             break;
         }
-        case 954449573: {
+        case 973517373: {
             const tmp = decodeErrorDatabaseFailure(__d);
             if(tmp === null) return null;
             value = tmp;
             break;
         }
-        case 235971182: {
+        case -2037436243: {
             const tmp = decodeErrorUnknownFailure(__d);
             if(tmp === null) return null;
             value = tmp;
@@ -46,116 +46,116 @@ export function defaultErrorTrait() {
 }
 export function compareErrorTrait(__a: Error, __b: Error) {
     switch(__a._name) {
-        case 'error.ErrorMessageDecodingFailure':
-            if(__b._name !== "error.ErrorMessageDecodingFailure") return false;
+        case 'error.errorMessageDecodingFailure':
+            if(__b._name !== "error.errorMessageDecodingFailure") return false;
             return compareErrorMessageDecodingFailure(__a,__b);
-        case 'error.ErrorDatabaseFailure':
-            if(__b._name !== "error.ErrorDatabaseFailure") return false;
+        case 'error.errorDatabaseFailure':
+            if(__b._name !== "error.errorDatabaseFailure") return false;
             return compareErrorDatabaseFailure(__a,__b);
-        case 'error.ErrorUnknownFailure':
-            if(__b._name !== "error.ErrorUnknownFailure") return false;
+        case 'error.errorUnknownFailure':
+            if(__b._name !== "error.errorUnknownFailure") return false;
             return compareErrorUnknownFailure(__a,__b);
     }
 }
-export interface ErrorMessageDecodingFailureInputParams {
+export interface errorMessageDecodingFailureInputParams {
 }
-export function ErrorMessageDecodingFailure(_: ErrorMessageDecodingFailureInputParams = {}): ErrorMessageDecodingFailure {
+export function errorMessageDecodingFailure(_: errorMessageDecodingFailureInputParams = {}): errorMessageDecodingFailure {
     return {
-        _name: 'error.ErrorMessageDecodingFailure'
+        _name: 'error.errorMessageDecodingFailure'
     };
 }
-export function encodeErrorMessageDecodingFailure(__s: ISerializer, _: ErrorMessageDecodingFailure) {
-    __s.writeInt32(280485814);
+export function encodeErrorMessageDecodingFailure(__s: ISerializer, _: errorMessageDecodingFailure) {
+    __s.writeInt32(-244340814);
 }
-export function decodeErrorMessageDecodingFailure(__d: IDeserializer): ErrorMessageDecodingFailure | null {
+export function decodeErrorMessageDecodingFailure(__d: IDeserializer): errorMessageDecodingFailure | null {
     const __id = __d.readInt32();
     /**
      * decode header
      */
-    if(__id !== 280485814) return null;
+    if(__id !== -244340814) return null;
     return {
-        _name: 'error.ErrorMessageDecodingFailure',
+        _name: 'error.errorMessageDecodingFailure',
     };
 }
-export interface ErrorMessageDecodingFailure  {
-    _name: 'error.ErrorMessageDecodingFailure';
+export interface errorMessageDecodingFailure  {
+    _name: 'error.errorMessageDecodingFailure';
 }
-export function defaultErrorMessageDecodingFailure(params: Partial<ErrorMessageDecodingFailureInputParams> = {}): ErrorMessageDecodingFailure {
-    return ErrorMessageDecodingFailure({
+export function defaultErrorMessageDecodingFailure(params: Partial<errorMessageDecodingFailureInputParams> = {}): errorMessageDecodingFailure {
+    return errorMessageDecodingFailure({
         ...params
     });
 }
-export function compareErrorMessageDecodingFailure(__a: ErrorMessageDecodingFailure, __b: ErrorMessageDecodingFailure): boolean {
+export function compareErrorMessageDecodingFailure(__a: errorMessageDecodingFailure, __b: errorMessageDecodingFailure): boolean {
     return true;
 }
-export function updateErrorMessageDecodingFailure(value: ErrorMessageDecodingFailure, _: Partial<ErrorMessageDecodingFailureInputParams>) {
+export function updateErrorMessageDecodingFailure(value: errorMessageDecodingFailure, _: Partial<errorMessageDecodingFailureInputParams>) {
     return value;
 }
-export interface ErrorDatabaseFailureInputParams {
+export interface errorDatabaseFailureInputParams {
 }
-export function ErrorDatabaseFailure(_: ErrorDatabaseFailureInputParams = {}): ErrorDatabaseFailure {
+export function errorDatabaseFailure(_: errorDatabaseFailureInputParams = {}): errorDatabaseFailure {
     return {
-        _name: 'error.ErrorDatabaseFailure'
+        _name: 'error.errorDatabaseFailure'
     };
 }
-export function encodeErrorDatabaseFailure(__s: ISerializer, _: ErrorDatabaseFailure) {
-    __s.writeInt32(954449573);
+export function encodeErrorDatabaseFailure(__s: ISerializer, _: errorDatabaseFailure) {
+    __s.writeInt32(973517373);
 }
-export function decodeErrorDatabaseFailure(__d: IDeserializer): ErrorDatabaseFailure | null {
+export function decodeErrorDatabaseFailure(__d: IDeserializer): errorDatabaseFailure | null {
     const __id = __d.readInt32();
     /**
      * decode header
      */
-    if(__id !== 954449573) return null;
+    if(__id !== 973517373) return null;
     return {
-        _name: 'error.ErrorDatabaseFailure',
+        _name: 'error.errorDatabaseFailure',
     };
 }
-export interface ErrorDatabaseFailure  {
-    _name: 'error.ErrorDatabaseFailure';
+export interface errorDatabaseFailure  {
+    _name: 'error.errorDatabaseFailure';
 }
-export function defaultErrorDatabaseFailure(params: Partial<ErrorDatabaseFailureInputParams> = {}): ErrorDatabaseFailure {
-    return ErrorDatabaseFailure({
+export function defaultErrorDatabaseFailure(params: Partial<errorDatabaseFailureInputParams> = {}): errorDatabaseFailure {
+    return errorDatabaseFailure({
         ...params
     });
 }
-export function compareErrorDatabaseFailure(__a: ErrorDatabaseFailure, __b: ErrorDatabaseFailure): boolean {
+export function compareErrorDatabaseFailure(__a: errorDatabaseFailure, __b: errorDatabaseFailure): boolean {
     return true;
 }
-export function updateErrorDatabaseFailure(value: ErrorDatabaseFailure, _: Partial<ErrorDatabaseFailureInputParams>) {
+export function updateErrorDatabaseFailure(value: errorDatabaseFailure, _: Partial<errorDatabaseFailureInputParams>) {
     return value;
 }
-export interface ErrorUnknownFailureInputParams {
+export interface errorUnknownFailureInputParams {
 }
-export function ErrorUnknownFailure(_: ErrorUnknownFailureInputParams = {}): ErrorUnknownFailure {
+export function errorUnknownFailure(_: errorUnknownFailureInputParams = {}): errorUnknownFailure {
     return {
-        _name: 'error.ErrorUnknownFailure'
+        _name: 'error.errorUnknownFailure'
     };
 }
-export function encodeErrorUnknownFailure(__s: ISerializer, _: ErrorUnknownFailure) {
-    __s.writeInt32(235971182);
+export function encodeErrorUnknownFailure(__s: ISerializer, _: errorUnknownFailure) {
+    __s.writeInt32(-2037436243);
 }
-export function decodeErrorUnknownFailure(__d: IDeserializer): ErrorUnknownFailure | null {
+export function decodeErrorUnknownFailure(__d: IDeserializer): errorUnknownFailure | null {
     const __id = __d.readInt32();
     /**
      * decode header
      */
-    if(__id !== 235971182) return null;
+    if(__id !== -2037436243) return null;
     return {
-        _name: 'error.ErrorUnknownFailure',
+        _name: 'error.errorUnknownFailure',
     };
 }
-export interface ErrorUnknownFailure  {
-    _name: 'error.ErrorUnknownFailure';
+export interface errorUnknownFailure  {
+    _name: 'error.errorUnknownFailure';
 }
-export function defaultErrorUnknownFailure(params: Partial<ErrorUnknownFailureInputParams> = {}): ErrorUnknownFailure {
-    return ErrorUnknownFailure({
+export function defaultErrorUnknownFailure(params: Partial<errorUnknownFailureInputParams> = {}): errorUnknownFailure {
+    return errorUnknownFailure({
         ...params
     });
 }
-export function compareErrorUnknownFailure(__a: ErrorUnknownFailure, __b: ErrorUnknownFailure): boolean {
+export function compareErrorUnknownFailure(__a: errorUnknownFailure, __b: errorUnknownFailure): boolean {
     return true;
 }
-export function updateErrorUnknownFailure(value: ErrorUnknownFailure, _: Partial<ErrorUnknownFailureInputParams>) {
+export function updateErrorUnknownFailure(value: errorUnknownFailure, _: Partial<errorUnknownFailureInputParams>) {
     return value;
 }
