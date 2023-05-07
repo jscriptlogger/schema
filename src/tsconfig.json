@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "noUncheckedIndexedAccess": false,
+        "noUnusedLocals": false
+    },
+    "include": [
+        "./Error.ts",
+        "./Value.ts",
+        "./objectId.ts",
+        "./Result.ts",
+        "./Request.ts",
+        "./protocol.ts",
+        "./schema.ts",
+        "./__types__.ts"
+    ],
+    "extends": "../tsconfig.base.json"
+}

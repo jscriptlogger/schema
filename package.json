@@ -1,0 +1,21 @@
+{
+  "name": "@jslogger/schema",
+  "version": "0.0.1",
+  "license": "MIT",
+  "dependencies": {
+    "jsbuffer": "^0.0.33"
+  },
+  "files": [
+    "src/**/*.js",
+    "src/**/*.map",
+    "src/**/*.d.ts"
+  ],
+  "scripts": {
+    "schema": "npx jsbuffer schema -o src --extends tsconfig.base.json",
+    "prepublishOnly": "yarn run schema && npx tsc -b src"
+  },
+  "devDependencies": {
+    "@types/node": "18.x",
+    "typescript": "5.x"
+  }
+}

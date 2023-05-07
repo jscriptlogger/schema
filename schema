@@ -1,0 +1,16 @@
+import { Error } from "./Error";
+import { Value } from "./Value";
+import { Result } from "./Result";
+import "./protocol";
+
+export type void_t : Result {}
+
+trait Operation {}
+
+type operationLog : Operation {
+  vector<Value> args;
+}
+
+type operationError : Operation {
+  vector<Value> args;
+}

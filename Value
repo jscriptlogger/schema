@@ -1,0 +1,39 @@
+import { objectId } from "./objectId";
+import { Result } from "./Result";
+import { Request } from "./Request";
+
+trait ObjectKey {}
+
+export trait Value {}
+
+type valueNumber : Value, ObjectKey {
+  double value;
+}
+
+type valueString : Value, ObjectKey {
+  string value;
+}
+
+type valueVector : Value {
+  vector<Value> value;
+}
+
+type valueObject : Value {
+  vector<tuple<Value,Value>> value;
+}
+
+type valueNaN : Value {}
+type valueNull : Value {}
+type valueUndefined : Value {}
+
+type valueValueRef : Value {
+  objectId id;
+}
+
+export type saveValueResult : Result {
+  objectId id;
+}
+
+export call SaveValue : Request => saveValueResult {
+  Value value;
+}

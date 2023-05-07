@@ -1,0 +1,25 @@
+import { Request } from "./Request";
+import { Result } from "./Result";
+import { Error } from "./Error";
+
+trait Message {}
+
+type messageRequest : Message {
+  ulong requestId;
+  ulong sessionId;
+  Request request;
+}
+
+type messageResultSuccess : Message {
+  ulong requestId;
+  Result result;
+}
+
+type messageResultError : Message {
+  ulong requestId;
+  Error error;
+}
+
+type messageProtocolError : Message {
+  Error error;
+}
