@@ -12,13 +12,19 @@ export call CreatePage : Request => createPageResult {
   string title;
 }
 
-trait InputPageItem {}
-
-type inputPageItemLog : InputPageItem {
-    vector<Value> args;
+type addPageLineResult : Result {
+  objectId id;
 }
 
-export call AddPageItem : Request => void_t {
+trait LineType {
+
+}
+
+type lineTypeLog : LineType {}
+type lineTypeError : LineType {}
+
+export call AddPageLine : Request => addPageLineResult {
     objectId pageId;
-    InputPageItem item;
+    LineType type;
+    vector<Value> line;
 }
