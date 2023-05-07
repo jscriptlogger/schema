@@ -1,6 +1,39 @@
 import {Result} from "./Result";
 import {ISerializer} from "./__types__";
 import {IDeserializer} from "./__types__";
+export type Void = Readonly<void_t>;
+export function encodeVoidTrait(__s: ISerializer,value: Void) {
+    switch(value._name) {
+        case 'void.void_t':
+            encodeVoid_t(__s,value);
+            break;
+    }
+}
+export function decodeVoidTrait(__d: IDeserializer) {
+    const __id = __d.readInt32();
+    __d.rewindInt32();
+    let value: void_t;
+    switch(__id) {
+        case -106002399: {
+            const tmp = decodeVoid_t(__d);
+            if(tmp === null) return null;
+            value = tmp;
+            break;
+        }
+        default: return null;
+    }
+    return value;
+}
+export function defaultVoidTrait() {
+    return defaultVoid_t();
+}
+export function compareVoidTrait(__a: Void, __b: Void) {
+    switch(__a._name) {
+        case 'void.void_t':
+            if(__b._name !== "void.void_t") return false;
+            return compareVoid_t(__a,__b);
+    }
+}
 export interface void_tInputParams {
 }
 export function void_t(_: void_tInputParams = {}): void_t {

@@ -1,7 +1,6 @@
 import {Request} from "./Request";
 import {Result} from "./Result";
 import {Error} from "./Error";
-import {void_t} from "./void";
 import {ISerializer} from "./__types__";
 import {IDeserializer} from "./__types__";
 import {encodeRequestTrait} from "./Request";

@@ -1,14 +1,6 @@
-import { Error } from "./Error";
-import { Value } from "./Value";
-import { Result } from "./Result";
+import "./Error";
+import "./value";
+import "./void";
+import "./page";
+import "./Result";
 import "./protocol";
-
-trait Operation {}
-
-type operationLog : Operation {
-  vector<Value> args;
-}
-
-type operationError : Operation {
-  vector<Value> args;
-}

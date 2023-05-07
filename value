@@ -38,10 +38,6 @@ export call SaveValue : Request => saveValueResult {
   Value value;
 }
 
-type initPageResult {
-  objectId id;
-}
-
-export call InitPage : Request => initPageResult {
-  string title;
+export call GetValueById : Request => Value {
+  objectId valueId;
 }

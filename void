@@ -1,4 +1,6 @@
 
 import { Result } from "./Result";
 
-export type void_t : Result {}
+export trait Void {}
+
+export type void_t : Result, Void {}

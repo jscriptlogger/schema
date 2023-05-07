@@ -1,13 +1,13 @@
-import {saveValueResult} from "./Value";
+import {saveValueResult} from "./value";
 import {void_t} from "./void";
 import {ISerializer} from "./__types__";
-import {encodeSaveValueResult} from "./Value";
+import {encodeSaveValueResult} from "./value";
 import {encodeVoid_t} from "./void";
 import {IDeserializer} from "./__types__";
-import {decodeSaveValueResult} from "./Value";
+import {decodeSaveValueResult} from "./value";
 import {decodeVoid_t} from "./void";
-import {defaultSaveValueResult} from "./Value";
-import {compareSaveValueResult} from "./Value";
+import {defaultSaveValueResult} from "./value";
+import {compareSaveValueResult} from "./value";
 import {compareVoid_t} from "./void";
 export type Result = Readonly<saveValueResult> | Readonly<void_t>;
 export function encodeResultTrait(__s: ISerializer,value: Result) {
@@ -25,7 +25,7 @@ export function decodeResultTrait(__d: IDeserializer) {
     __d.rewindInt32();
     let value: saveValueResult | void_t;
     switch(__id) {
-        case 710049971: {
+        case 205410927: {
             const tmp = decodeSaveValueResult(__d);
             if(tmp === null) return null;
             value = tmp;

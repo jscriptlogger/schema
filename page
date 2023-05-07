@@ -1,0 +1,23 @@
+import { Request } from "./Request";
+import { void_t } from "./void";
+import { objectId } from "./objectId";
+import { Value } from "./value";
+
+type initPageResult {
+  objectId id;
+}
+
+export call InitPage : Request => initPageResult {
+  string title;
+}
+
+trait InputPageItem {}
+
+type inputPageItemLog : InputPageItem {
+    vector<Value> args;
+}
+
+export call AddPageItem : Request => void_t {
+    objectId pageId;
+    InputPageItem item;
+}

@@ -1,38 +1,64 @@
-import {SaveValue} from "./Value";
-import {InitPage} from "./Value";
+import {SaveValue} from "./value";
+import {GetValueById} from "./value";
+import {InitPage} from "./page";
+import {AddPageItem} from "./page";
 import {ISerializer} from "./__types__";
-import {encodeSaveValue} from "./Value";
-import {encodeInitPage} from "./Value";
+import {encodeSaveValue} from "./value";
+import {encodeGetValueById} from "./value";
+import {encodeInitPage} from "./page";
+import {encodeAddPageItem} from "./page";
 import {IDeserializer} from "./__types__";
-import {decodeSaveValue} from "./Value";
-import {decodeInitPage} from "./Value";
-import {defaultSaveValue} from "./Value";
-import {compareSaveValue} from "./Value";
-import {compareInitPage} from "./Value";
-export type Request = Readonly<SaveValue> | Readonly<InitPage>;
+import {decodeSaveValue} from "./value";
+import {decodeGetValueById} from "./value";
+import {decodeInitPage} from "./page";
+import {decodeAddPageItem} from "./page";
+import {defaultSaveValue} from "./value";
+import {compareSaveValue} from "./value";
+import {compareGetValueById} from "./value";
+import {compareInitPage} from "./page";
+import {compareAddPageItem} from "./page";
+export type Request = Readonly<SaveValue> | Readonly<GetValueById> | Readonly<InitPage> | Readonly<AddPageItem>;
 export function encodeRequestTrait(__s: ISerializer,value: Request) {
     switch(value._name) {
         case 'value.SaveValue':
             encodeSaveValue(__s,value);
             break;
-        case 'value.InitPage':
+        case 'value.GetValueById':
+            encodeGetValueById(__s,value);
+            break;
+        case 'page.InitPage':
             encodeInitPage(__s,value);
+            break;
+        case 'page.AddPageItem':
+            encodeAddPageItem(__s,value);
             break;
     }
 }
 export function decodeRequestTrait(__d: IDeserializer) {
     const __id = __d.readInt32();
     __d.rewindInt32();
-    let value: SaveValue | InitPage;
+    let value: SaveValue | GetValueById | InitPage | AddPageItem;
     switch(__id) {
-        case -618292882: {
+        case -1279092661: {
             const tmp = decodeSaveValue(__d);
             if(tmp === null) return null;
             value = tmp;
             break;
         }
-        case 1916033193: {
+        case -1689588124: {
+            const tmp = decodeGetValueById(__d);
+            if(tmp === null) return null;
+            value = tmp;
+            break;
+        }
+        case -1026707742: {
             const tmp = decodeInitPage(__d);
+            if(tmp === null) return null;
+            value = tmp;
+            break;
+        }
+        case -1542453560: {
+            const tmp = decodeAddPageItem(__d);
             if(tmp === null) return null;
             value = tmp;
             break;
@@ -49,8 +75,14 @@ export function compareRequestTrait(__a: Request, __b: Request) {
         case 'value.SaveValue':
             if(__b._name !== "value.SaveValue") return false;
             return compareSaveValue(__a,__b);
-        case 'value.InitPage':
-            if(__b._name !== "value.InitPage") return false;
+        case 'value.GetValueById':
+            if(__b._name !== "value.GetValueById") return false;
+            return compareGetValueById(__a,__b);
+        case 'page.InitPage':
+            if(__b._name !== "page.InitPage") return false;
             return compareInitPage(__a,__b);
+        case 'page.AddPageItem':
+            if(__b._name !== "page.AddPageItem") return false;
+            return compareAddPageItem(__a,__b);
     }
 }
