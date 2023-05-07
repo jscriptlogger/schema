@@ -4,11 +4,11 @@ import { void_t } from "./void";
 import { objectId } from "./objectId";
 import { Value } from "./value";
 
-type initPageResult : Result {
+export type createPageResult : Result {
   objectId id;
 }
 
-export call InitPage : Request => initPageResult {
+export call CreatePage : Request => createPageResult {
   string title;
 }
 
