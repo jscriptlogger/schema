@@ -12,19 +12,17 @@ export call CreatePage : Request => createPageResult {
   string title;
 }
 
-type addPageLineResult : Result {
-  objectId id;
-}
-
-trait LineType {
-
-}
+trait LineType {}
 
 type lineTypeLog : LineType {}
 type lineTypeError : LineType {}
 
+export type addPageLineResult : Result {
+  objectId id;
+}
+
 export call AddPageLine : Request => addPageLineResult {
-    objectId pageId;
-    LineType type;
-    vector<Value> line;
+  objectId pageId;
+  LineType lineType;
+  vector<Value> line;
 }
