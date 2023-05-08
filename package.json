@@ -6,9 +6,8 @@
     "jsbuffer": "^0.0.33"
   },
   "files": [
-    "src/**/*.js",
-    "src/**/*.map",
-    "src/**/*.d.ts"
+    "src/**/*.{d.ts,map,js}",
+    "converter/**/*.{d.ts,map,js}"
   ],
   "scripts": {
     "test": "TS_NODE_PROJECT=test/tsconfig.json npx sarg --require ts-node/register \"test/**/*.ts\"",
