@@ -25,5 +25,5 @@ type messageProtocolError : Message {
 }
 
 type ackMessage {
-  long messageId;
+  ulong messageId;
 }
