@@ -26,3 +26,32 @@ export call AddPageLine : Request => addPageLineResult {
   LineType lineType;
   vector<Value> line;
 }
+
+type page {
+  objectId id;
+  string title;
+}
+
+export type getPagesResult : Result {
+  vector<page> list;
+}
+
+export call GetPages : Request => getPagesResult {
+  uint32 offset;
+  uint32 limit;
+}
+
+type pageLine {
+  objectId id;
+  vector<Value> values;
+}
+
+export type getPageLinesResult : Result {
+  vector<pageLine> list;
+}
+
+export call GetPageLines : Request => getPageLinesResult {
+  objectId pageId;
+  uint32 offset;
+  uint32 limit;
+}
