@@ -22,9 +22,17 @@ type valueObject : Value {
   vector<tuple<Value,Value>> value;
 }
 
+trait Bool {}
+
+type boolTrue : Bool {}
+type boolFalse : Bool {}
+
 type valueNaN : Value {}
 type valueNull : Value {}
 type valueUndefined : Value {}
+type valueBoolean : Value {
+  Bool value;
+}
 
 type valueValueRef : Value {
   objectId id;

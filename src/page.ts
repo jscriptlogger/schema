@@ -39,6 +39,11 @@ import {compareObjectId as compareObjectId23} from "./objectId";
 import {compareValueTrait as compareValueTrait24} from "./value";
 import {compareObjectId as compareObjectId25} from "./objectId";
 import {compareValueTrait as compareValueTrait26} from "./value";
+import {encodeObjectId as encodeObjectId27} from "./objectId";
+import {decodeObjectId as decodeObjectId28} from "./objectId";
+import {defaultObjectId as defaultObjectId29} from "./objectId";
+import {compareObjectId as compareObjectId30} from "./objectId";
+import {compareObjectId as compareObjectId31} from "./objectId";
 export interface createPageResultInputParams {
     id: Readonly<objectId>;
 }
@@ -906,37 +911,51 @@ export function updateGetPageLinesResult(value: getPageLinesResult, changes: Par
     return value;
 }
 export interface GetPageLinesInputParams {
+    pageId: Readonly<objectId>;
     offset: number;
     limit: number;
 }
 export function GetPageLines(params: GetPageLinesInputParams): GetPageLines {
     return {
         _name: 'page.GetPageLines',
+        pageId: params['pageId'],
         offset: params['offset'],
         limit: params['limit']
     };
 }
 export function encodeGetPageLines(__s: ISerializer, value: GetPageLines) {
-    __s.writeInt32(-326434732);
+    __s.writeInt32(272857108);
+    /**
+     * encoding param: pageId
+     */
+    const __pv0 = value['pageId'];
+    encodeObjectId27(__s,__pv0);
     /**
      * encoding param: offset
      */
-    const __pv0 = value['offset'];
-    __s.writeUint32(__pv0);
+    const __pv1 = value['offset'];
+    __s.writeUint32(__pv1);
     /**
      * encoding param: limit
      */
-    const __pv1 = value['limit'];
-    __s.writeUint32(__pv1);
+    const __pv2 = value['limit'];
+    __s.writeUint32(__pv2);
 }
 export function decodeGetPageLines(__d: IDeserializer): GetPageLines | null {
     const __id = __d.readInt32();
     /**
      * decode header
      */
-    if(__id !== -326434732) return null;
+    if(__id !== 272857108) return null;
+    let pageId: objectId;
     let offset: number;
     let limit: number;
+    /**
+     * decoding param: pageId
+     */
+    const tmp2 = decodeObjectId28(__d);
+    if(tmp2 === null) return null;
+    pageId = tmp2;
     /**
      * decoding param: offset
      */
@@ -947,17 +966,20 @@ export function decodeGetPageLines(__d: IDeserializer): GetPageLines | null {
     limit = __d.readUint32();
     return {
         _name: 'page.GetPageLines',
+        pageId,
         offset,
         limit
     };
 }
 export interface GetPageLines extends IRequest<Readonly<getPageLinesResult>> {
     _name: 'page.GetPageLines';
+    pageId: Readonly<objectId>;
     offset: number;
     limit: number;
 }
 export function defaultGetPageLines(params: Partial<GetPageLinesInputParams> = {}): GetPageLines {
     return GetPageLines({
+        pageId: defaultObjectId(),
         offset: 0,
         limit: 0,
         ...params
@@ -965,6 +987,10 @@ export function defaultGetPageLines(params: Partial<GetPageLinesInputParams> = {
 }
 export function compareGetPageLines(__a: GetPageLines, __b: GetPageLines): boolean {
     return (
+        /**
+         * compare parameter pageId
+         */
+        compareObjectId30(__a['pageId'],__b['pageId']) &&
         /**
          * compare parameter offset
          */
@@ -976,6 +1002,14 @@ export function compareGetPageLines(__a: GetPageLines, __b: GetPageLines): boole
     );
 }
 export function updateGetPageLines(value: GetPageLines, changes: Partial<GetPageLinesInputParams>) {
+    if(typeof changes['pageId'] !== 'undefined') {
+        if(!(compareObjectId31(changes['pageId'],value['pageId']))) {
+            value = GetPageLines({
+                ...value,
+                pageId: changes['pageId'],
+            });
+        }
+    }
     if(typeof changes['offset'] !== 'undefined') {
         if(!(changes['offset'] === value['offset'])) {
             value = GetPageLines({

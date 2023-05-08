@@ -64,7 +64,7 @@ export function compareObjectKeyTrait(__a: ObjectKey, __b: ObjectKey) {
             return compareValueString(__a,__b);
     }
 }
-export type Value = Readonly<valueNumber> | Readonly<valueString> | Readonly<valueVector> | Readonly<valueObject> | Readonly<valueNaN> | Readonly<valueNull> | Readonly<valueUndefined> | Readonly<valueValueRef>;
+export type Value = Readonly<valueNumber> | Readonly<valueString> | Readonly<valueVector> | Readonly<valueObject> | Readonly<valueNaN> | Readonly<valueNull> | Readonly<valueUndefined> | Readonly<valueBoolean> | Readonly<valueValueRef>;
 export function encodeValueTrait(__s: ISerializer,value: Value) {
     switch(value._name) {
         case 'value.valueNumber':
@@ -88,6 +88,9 @@ export function encodeValueTrait(__s: ISerializer,value: Value) {
         case 'value.valueUndefined':
             encodeValueUndefined(__s,value);
             break;
+        case 'value.valueBoolean':
+            encodeValueBoolean(__s,value);
+            break;
         case 'value.valueValueRef':
             encodeValueValueRef(__s,value);
             break;
@@ -96,7 +99,7 @@ export function encodeValueTrait(__s: ISerializer,value: Value) {
 export function decodeValueTrait(__d: IDeserializer) {
     const __id = __d.readInt32();
     __d.rewindInt32();
-    let value: valueNumber | valueString | valueVector | valueObject | valueNaN | valueNull | valueUndefined | valueValueRef;
+    let value: valueNumber | valueString | valueVector | valueObject | valueNaN | valueNull | valueUndefined | valueBoolean | valueValueRef;
     switch(__id) {
         case 605672217: {
             const tmp = decodeValueNumber(__d);
@@ -140,6 +143,12 @@ export function decodeValueTrait(__d: IDeserializer) {
             value = tmp;
             break;
         }
+        case 739041872: {
+            const tmp = decodeValueBoolean(__d);
+            if(tmp === null) return null;
+            value = tmp;
+            break;
+        }
         case -1629367881: {
             const tmp = decodeValueValueRef(__d);
             if(tmp === null) return null;
@@ -176,6 +185,9 @@ export function compareValueTrait(__a: Value, __b: Value) {
         case 'value.valueUndefined':
             if(__b._name !== "value.valueUndefined") return false;
             return compareValueUndefined(__a,__b);
+        case 'value.valueBoolean':
+            if(__b._name !== "value.valueBoolean") return false;
+            return compareValueBoolean(__a,__b);
         case 'value.valueValueRef':
             if(__b._name !== "value.valueValueRef") return false;
             return compareValueValueRef(__a,__b);
@@ -462,6 +474,119 @@ export function updateValueObject(value: valueObject, changes: Partial<valueObje
     }
     return value;
 }
+export type Bool = Readonly<boolTrue> | Readonly<boolFalse>;
+export function encodeBoolTrait(__s: ISerializer,value: Bool) {
+    switch(value._name) {
+        case 'value.boolTrue':
+            encodeBoolTrue(__s,value);
+            break;
+        case 'value.boolFalse':
+            encodeBoolFalse(__s,value);
+            break;
+    }
+}
+export function decodeBoolTrait(__d: IDeserializer) {
+    const __id = __d.readInt32();
+    __d.rewindInt32();
+    let value: boolTrue | boolFalse;
+    switch(__id) {
+        case 502548213: {
+            const tmp = decodeBoolTrue(__d);
+            if(tmp === null) return null;
+            value = tmp;
+            break;
+        }
+        case -1977497450: {
+            const tmp = decodeBoolFalse(__d);
+            if(tmp === null) return null;
+            value = tmp;
+            break;
+        }
+        default: return null;
+    }
+    return value;
+}
+export function defaultBoolTrait() {
+    return defaultBoolTrue();
+}
+export function compareBoolTrait(__a: Bool, __b: Bool) {
+    switch(__a._name) {
+        case 'value.boolTrue':
+            if(__b._name !== "value.boolTrue") return false;
+            return compareBoolTrue(__a,__b);
+        case 'value.boolFalse':
+            if(__b._name !== "value.boolFalse") return false;
+            return compareBoolFalse(__a,__b);
+    }
+}
+export interface boolTrueInputParams {
+}
+export function boolTrue(_: boolTrueInputParams = {}): boolTrue {
+    return {
+        _name: 'value.boolTrue'
+    };
+}
+export function encodeBoolTrue(__s: ISerializer, _: boolTrue) {
+    __s.writeInt32(502548213);
+}
+export function decodeBoolTrue(__d: IDeserializer): boolTrue | null {
+    const __id = __d.readInt32();
+    /**
+     * decode header
+     */
+    if(__id !== 502548213) return null;
+    return {
+        _name: 'value.boolTrue',
+    };
+}
+export interface boolTrue  {
+    _name: 'value.boolTrue';
+}
+export function defaultBoolTrue(params: Partial<boolTrueInputParams> = {}): boolTrue {
+    return boolTrue({
+        ...params
+    });
+}
+export function compareBoolTrue(__a: boolTrue, __b: boolTrue): boolean {
+    return true;
+}
+export function updateBoolTrue(value: boolTrue, _: Partial<boolTrueInputParams>) {
+    return value;
+}
+export interface boolFalseInputParams {
+}
+export function boolFalse(_: boolFalseInputParams = {}): boolFalse {
+    return {
+        _name: 'value.boolFalse'
+    };
+}
+export function encodeBoolFalse(__s: ISerializer, _: boolFalse) {
+    __s.writeInt32(-1977497450);
+}
+export function decodeBoolFalse(__d: IDeserializer): boolFalse | null {
+    const __id = __d.readInt32();
+    /**
+     * decode header
+     */
+    if(__id !== -1977497450) return null;
+    return {
+        _name: 'value.boolFalse',
+    };
+}
+export interface boolFalse  {
+    _name: 'value.boolFalse';
+}
+export function defaultBoolFalse(params: Partial<boolFalseInputParams> = {}): boolFalse {
+    return boolFalse({
+        ...params
+    });
+}
+export function compareBoolFalse(__a: boolFalse, __b: boolFalse): boolean {
+    return true;
+}
+export function updateBoolFalse(value: boolFalse, _: Partial<boolFalseInputParams>) {
+    return value;
+}
 export interface valueNaNInputParams {
 }
 export function valueNaN(_: valueNaNInputParams = {}): valueNaN {
@@ -562,6 +687,70 @@ export function compareValueUndefined(__a: valueUndefined, __b: valueUndefined):
     return true;
 }
 export function updateValueUndefined(value: valueUndefined, _: Partial<valueUndefinedInputParams>) {
+    return value;
+}
+export interface valueBooleanInputParams {
+    value: Readonly<Bool>;
+}
+export function valueBoolean(params: valueBooleanInputParams): valueBoolean {
+    return {
+        _name: 'value.valueBoolean',
+        value: params['value']
+    };
+}
+export function encodeValueBoolean(__s: ISerializer, value: valueBoolean) {
+    __s.writeInt32(739041872);
+    /**
+     * encoding param: value
+     */
+    const __pv0 = value['value'];
+    encodeBoolTrait(__s,__pv0);
+}
+export function decodeValueBoolean(__d: IDeserializer): valueBoolean | null {
+    const __id = __d.readInt32();
+    /**
+     * decode header
+     */
+    if(__id !== 739041872) return null;
+    let value: Bool;
+    /**
+     * decoding param: value
+     */
+    const __tmp1 = decodeBoolTrait(__d);
+    if(__tmp1 === null) return null;
+    value = __tmp1;
+    return {
+        _name: 'value.valueBoolean',
+        value
+    };
+}
+export interface valueBoolean  {
+    _name: 'value.valueBoolean';
+    value: Readonly<Bool>;
+}
+export function defaultValueBoolean(params: Partial<valueBooleanInputParams> = {}): valueBoolean {
+    return valueBoolean({
+        value: defaultBoolTrait(),
+        ...params
+    });
+}
+export function compareValueBoolean(__a: valueBoolean, __b: valueBoolean): boolean {
+    return (
+        /**
+         * compare parameter value
+         */
+        compareBoolTrait(__a['value'],__b['value'])
+    );
+}
+export function updateValueBoolean(value: valueBoolean, changes: Partial<valueBooleanInputParams>) {
+    if(typeof changes['value'] !== 'undefined') {
+        if(!(compareBoolTrait(changes['value'],value['value']))) {
+            value = valueBoolean({
+                ...value,
+                value: changes['value'],
+            });
+        }
+    }
     return value;
 }
 export interface valueValueRefInputParams {

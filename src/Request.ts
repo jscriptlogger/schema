@@ -83,7 +83,7 @@ export function decodeRequestTrait(__d: IDeserializer) {
             value = tmp;
             break;
         }
-        case -326434732: {
+        case 272857108: {
             const tmp = decodeGetPageLines(__d);
             if(tmp === null) return null;
             value = tmp;

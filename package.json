@@ -11,11 +11,18 @@
     "src/**/*.d.ts"
   ],
   "scripts": {
+    "test": "TS_NODE_PROJECT=test/tsconfig.json npx sarg --require ts-node/register \"test/**/*.ts\"",
+    "test:coverage": "npx nyc yarn test",
     "schema": "npx jsbuffer schema -o src --extends tsconfig.base.json",
-    "prepublishOnly": "yarn run schema && npx tsc -b src"
+    "prepublishOnly": "yarn run schema && npx tsc -b src converter && yarn test"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.5",
     "@types/node": "18.x",
+    "chai": "^4.3.7",
+    "nyc": "15.x",
+    "sarg": "5.x",
+    "ts-node": "10.x",
     "typescript": "5.x"
   }
 }
