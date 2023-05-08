@@ -15,7 +15,7 @@
     "build": "npx tsc -b src --force",
     "build:es": "npx tsc --project src --module ESNext --outDir es",
     "set-es-paths": "yarn run build:es && npx package-utilities --set-es-paths --include \"src/**/*.js\" --es-folder es",
-    "schema": "npx jsbuffer schema -o src --extends tsconfig.base.json",
+    "schema": "npx jsbuffer schema -o src --extends tsconfig.base.json --indentation-size 2",
     "prepublishOnly": "yarn run schema && yarn run build && yarn run build:es && yarn test && yarn run set-es-paths"
   },
   "devDependencies": {

@@ -27,94 +27,94 @@ import {compareGetPagesResult} from "./page";
 import {compareGetPageLinesResult} from "./page";
 export type Result = Readonly<saveValueResult> | Readonly<void_t> | Readonly<createPageResult> | Readonly<addPageLineResult> | Readonly<getPagesResult> | Readonly<getPageLinesResult>;
 export function encodeResultTrait(__s: ISerializer,value: Result) {
-    switch(value._name) {
-        case 'value.saveValueResult':
-            encodeSaveValueResult(__s,value);
-            break;
-        case 'void.void_t':
-            encodeVoid_t(__s,value);
-            break;
-        case 'page.createPageResult':
-            encodeCreatePageResult(__s,value);
-            break;
-        case 'page.addPageLineResult':
-            encodeAddPageLineResult(__s,value);
-            break;
-        case 'page.getPagesResult':
-            encodeGetPagesResult(__s,value);
-            break;
-        case 'page.getPageLinesResult':
-            encodeGetPageLinesResult(__s,value);
-            break;
-    }
+  switch(value._name) {
+    case 'value.saveValueResult':
+      encodeSaveValueResult(__s,value);
+      break;
+    case 'void.void_t':
+      encodeVoid_t(__s,value);
+      break;
+    case 'page.createPageResult':
+      encodeCreatePageResult(__s,value);
+      break;
+    case 'page.addPageLineResult':
+      encodeAddPageLineResult(__s,value);
+      break;
+    case 'page.getPagesResult':
+      encodeGetPagesResult(__s,value);
+      break;
+    case 'page.getPageLinesResult':
+      encodeGetPageLinesResult(__s,value);
+      break;
+  }
 }
 export function decodeResultTrait(__d: IDeserializer) {
-    const __id = __d.readInt32();
-    __d.rewindInt32();
-    let value: saveValueResult | void_t | createPageResult | addPageLineResult | getPagesResult | getPageLinesResult;
-    switch(__id) {
-        case 205410927: {
-            const tmp = decodeSaveValueResult(__d);
-            if(tmp === null) return null;
-            value = tmp;
-            break;
-        }
-        case -106002399: {
-            const tmp = decodeVoid_t(__d);
-            if(tmp === null) return null;
-            value = tmp;
-            break;
-        }
-        case -1422046958: {
-            const tmp = decodeCreatePageResult(__d);
-            if(tmp === null) return null;
-            value = tmp;
-            break;
-        }
-        case 1696328515: {
-            const tmp = decodeAddPageLineResult(__d);
-            if(tmp === null) return null;
-            value = tmp;
-            break;
-        }
-        case 946495797: {
-            const tmp = decodeGetPagesResult(__d);
-            if(tmp === null) return null;
-            value = tmp;
-            break;
-        }
-        case -1385814249: {
-            const tmp = decodeGetPageLinesResult(__d);
-            if(tmp === null) return null;
-            value = tmp;
-            break;
-        }
-        default: return null;
+  const __id = __d.readInt32();
+  __d.rewindInt32();
+  let value: saveValueResult | void_t | createPageResult | addPageLineResult | getPagesResult | getPageLinesResult;
+  switch(__id) {
+    case 205410927: {
+      const tmp = decodeSaveValueResult(__d);
+      if(tmp === null) return null;
+      value = tmp;
+      break;
     }
-    return value;
+    case -106002399: {
+      const tmp = decodeVoid_t(__d);
+      if(tmp === null) return null;
+      value = tmp;
+      break;
+    }
+    case -1422046958: {
+      const tmp = decodeCreatePageResult(__d);
+      if(tmp === null) return null;
+      value = tmp;
+      break;
+    }
+    case 1696328515: {
+      const tmp = decodeAddPageLineResult(__d);
+      if(tmp === null) return null;
+      value = tmp;
+      break;
+    }
+    case 946495797: {
+      const tmp = decodeGetPagesResult(__d);
+      if(tmp === null) return null;
+      value = tmp;
+      break;
+    }
+    case -1385814249: {
+      const tmp = decodeGetPageLinesResult(__d);
+      if(tmp === null) return null;
+      value = tmp;
+      break;
+    }
+    default: return null;
+  }
+  return value;
 }
 export function defaultResultTrait() {
-    return defaultSaveValueResult();
+  return defaultSaveValueResult();
 }
 export function compareResultTrait(__a: Result, __b: Result) {
-    switch(__a._name) {
-        case 'value.saveValueResult':
-            if(__b._name !== "value.saveValueResult") return false;
-            return compareSaveValueResult(__a,__b);
-        case 'void.void_t':
-            if(__b._name !== "void.void_t") return false;
-            return compareVoid_t(__a,__b);
-        case 'page.createPageResult':
-            if(__b._name !== "page.createPageResult") return false;
-            return compareCreatePageResult(__a,__b);
-        case 'page.addPageLineResult':
-            if(__b._name !== "page.addPageLineResult") return false;
-            return compareAddPageLineResult(__a,__b);
-        case 'page.getPagesResult':
-            if(__b._name !== "page.getPagesResult") return false;
-            return compareGetPagesResult(__a,__b);
-        case 'page.getPageLinesResult':
-            if(__b._name !== "page.getPageLinesResult") return false;
-            return compareGetPageLinesResult(__a,__b);
-    }
+  switch(__a._name) {
+    case 'value.saveValueResult':
+      if(__b._name !== "value.saveValueResult") return false;
+      return compareSaveValueResult(__a,__b);
+    case 'void.void_t':
+      if(__b._name !== "void.void_t") return false;
+      return compareVoid_t(__a,__b);
+    case 'page.createPageResult':
+      if(__b._name !== "page.createPageResult") return false;
+      return compareCreatePageResult(__a,__b);
+    case 'page.addPageLineResult':
+      if(__b._name !== "page.addPageLineResult") return false;
+      return compareAddPageLineResult(__a,__b);
+    case 'page.getPagesResult':
+      if(__b._name !== "page.getPagesResult") return false;
+      return compareGetPagesResult(__a,__b);
+    case 'page.getPageLinesResult':
+      if(__b._name !== "page.getPageLinesResult") return false;
+      return compareGetPageLinesResult(__a,__b);
+  }
 }
