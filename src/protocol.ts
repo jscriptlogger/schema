@@ -18,11 +18,6 @@ import {decodeErrorTrait} from "./Error";
 import {defaultErrorTrait} from "./Error";
 import {compareErrorTrait} from "./Error";
 import {compareErrorTrait as compareErrorTrait3} from "./Error";
-import {encodeErrorTrait as encodeErrorTrait4} from "./Error";
-import {decodeErrorTrait as decodeErrorTrait5} from "./Error";
-import {defaultErrorTrait as defaultErrorTrait6} from "./Error";
-import {compareErrorTrait as compareErrorTrait7} from "./Error";
-import {compareErrorTrait as compareErrorTrait8} from "./Error";
 export type Message = Readonly<messageRequest> | Readonly<messageResultSuccess> | Readonly<messageResultError> | Readonly<messageProtocolError>;
 export function encodeMessageTrait(__s: ISerializer,value: Message) {
     switch(value._name) {
@@ -63,7 +58,7 @@ export function decodeMessageTrait(__d: IDeserializer) {
             value = tmp;
             break;
         }
-        case -1084468548: {
+        case -765870960: {
             const tmp = decodeMessageProtocolError(__d);
             if(tmp === null) return null;
             value = tmp;
@@ -81,6 +76,96 @@ export function compareMessageTrait(__a: Message, __b: Message) {
         case 'protocol.messageRequest':
             if(__b._name !== "protocol.messageRequest") return false;
             return compareMessageRequest(__a,__b);
+        case 'protocol.messageResultSuccess':
+            if(__b._name !== "protocol.messageResultSuccess") return false;
+            return compareMessageResultSuccess(__a,__b);
+        case 'protocol.messageResultError':
+            if(__b._name !== "protocol.messageResultError") return false;
+            return compareMessageResultError(__a,__b);
+        case 'protocol.messageProtocolError':
+            if(__b._name !== "protocol.messageProtocolError") return false;
+            return compareMessageProtocolError(__a,__b);
+    }
+}
+export type ClientMessage = Readonly<messageRequest>;
+export function encodeClientMessageTrait(__s: ISerializer,value: ClientMessage) {
+    switch(value._name) {
+        case 'protocol.messageRequest':
+            encodeMessageRequest(__s,value);
+            break;
+    }
+}
+export function decodeClientMessageTrait(__d: IDeserializer) {
+    const __id = __d.readInt32();
+    __d.rewindInt32();
+    let value: messageRequest;
+    switch(__id) {
+        case -1155148981: {
+            const tmp = decodeMessageRequest(__d);
+            if(tmp === null) return null;
+            value = tmp;
+            break;
+        }
+        default: return null;
+    }
+    return value;
+}
+export function defaultClientMessageTrait() {
+    return defaultMessageRequest();
+}
+export function compareClientMessageTrait(__a: ClientMessage, __b: ClientMessage) {
+    switch(__a._name) {
+        case 'protocol.messageRequest':
+            if(__b._name !== "protocol.messageRequest") return false;
+            return compareMessageRequest(__a,__b);
+    }
+}
+export type ServerMessage = Readonly<messageResultSuccess> | Readonly<messageResultError> | Readonly<messageProtocolError>;
+export function encodeServerMessageTrait(__s: ISerializer,value: ServerMessage) {
+    switch(value._name) {
+        case 'protocol.messageResultSuccess':
+            encodeMessageResultSuccess(__s,value);
+            break;
+        case 'protocol.messageResultError':
+            encodeMessageResultError(__s,value);
+            break;
+        case 'protocol.messageProtocolError':
+            encodeMessageProtocolError(__s,value);
+            break;
+    }
+}
+export function decodeServerMessageTrait(__d: IDeserializer) {
+    const __id = __d.readInt32();
+    __d.rewindInt32();
+    let value: messageResultSuccess | messageResultError | messageProtocolError;
+    switch(__id) {
+        case -1223033196: {
+            const tmp = decodeMessageResultSuccess(__d);
+            if(tmp === null) return null;
+            value = tmp;
+            break;
+        }
+        case 1695954647: {
+            const tmp = decodeMessageResultError(__d);
+            if(tmp === null) return null;
+            value = tmp;
+            break;
+        }
+        case -765870960: {
+            const tmp = decodeMessageProtocolError(__d);
+            if(tmp === null) return null;
+            value = tmp;
+            break;
+        }
+        default: return null;
+    }
+    return value;
+}
+export function defaultServerMessageTrait() {
+    return defaultMessageResultSuccess();
+}
+export function compareServerMessageTrait(__a: ServerMessage, __b: ServerMessage) {
+    switch(__a._name) {
         case 'protocol.messageResultSuccess':
             if(__b._name !== "protocol.messageResultSuccess") return false;
             return compareMessageResultSuccess(__a,__b);
@@ -392,8 +477,121 @@ export function updateMessageResultError(value: messageResultError, changes: Par
     }
     return value;
 }
+export type ProtocolError = Readonly<protocolErrorExpectingBinaryMessage> | Readonly<protocolErrorDecodeMessageError>;
+export function encodeProtocolErrorTrait(__s: ISerializer,value: ProtocolError) {
+    switch(value._name) {
+        case 'protocol.protocolErrorExpectingBinaryMessage':
+            encodeProtocolErrorExpectingBinaryMessage(__s,value);
+            break;
+        case 'protocol.protocolErrorDecodeMessageError':
+            encodeProtocolErrorDecodeMessageError(__s,value);
+            break;
+    }
+}
+export function decodeProtocolErrorTrait(__d: IDeserializer) {
+    const __id = __d.readInt32();
+    __d.rewindInt32();
+    let value: protocolErrorExpectingBinaryMessage | protocolErrorDecodeMessageError;
+    switch(__id) {
+        case 1095522002: {
+            const tmp = decodeProtocolErrorExpectingBinaryMessage(__d);
+            if(tmp === null) return null;
+            value = tmp;
+            break;
+        }
+        case 379912031: {
+            const tmp = decodeProtocolErrorDecodeMessageError(__d);
+            if(tmp === null) return null;
+            value = tmp;
+            break;
+        }
+        default: return null;
+    }
+    return value;
+}
+export function defaultProtocolErrorTrait() {
+    return defaultProtocolErrorExpectingBinaryMessage();
+}
+export function compareProtocolErrorTrait(__a: ProtocolError, __b: ProtocolError) {
+    switch(__a._name) {
+        case 'protocol.protocolErrorExpectingBinaryMessage':
+            if(__b._name !== "protocol.protocolErrorExpectingBinaryMessage") return false;
+            return compareProtocolErrorExpectingBinaryMessage(__a,__b);
+        case 'protocol.protocolErrorDecodeMessageError':
+            if(__b._name !== "protocol.protocolErrorDecodeMessageError") return false;
+            return compareProtocolErrorDecodeMessageError(__a,__b);
+    }
+}
+export interface protocolErrorExpectingBinaryMessageInputParams {
+}
+export function protocolErrorExpectingBinaryMessage(_: protocolErrorExpectingBinaryMessageInputParams = {}): protocolErrorExpectingBinaryMessage {
+    return {
+        _name: 'protocol.protocolErrorExpectingBinaryMessage'
+    };
+}
+export function encodeProtocolErrorExpectingBinaryMessage(__s: ISerializer, _: protocolErrorExpectingBinaryMessage) {
+    __s.writeInt32(1095522002);
+}
+export function decodeProtocolErrorExpectingBinaryMessage(__d: IDeserializer): protocolErrorExpectingBinaryMessage | null {
+    const __id = __d.readInt32();
+    /**
+     * decode header
+     */
+    if(__id !== 1095522002) return null;
+    return {
+        _name: 'protocol.protocolErrorExpectingBinaryMessage',
+    };
+}
+export interface protocolErrorExpectingBinaryMessage  {
+    _name: 'protocol.protocolErrorExpectingBinaryMessage';
+}
+export function defaultProtocolErrorExpectingBinaryMessage(params: Partial<protocolErrorExpectingBinaryMessageInputParams> = {}): protocolErrorExpectingBinaryMessage {
+    return protocolErrorExpectingBinaryMessage({
+        ...params
+    });
+}
+export function compareProtocolErrorExpectingBinaryMessage(__a: protocolErrorExpectingBinaryMessage, __b: protocolErrorExpectingBinaryMessage): boolean {
+    return true;
+}
+export function updateProtocolErrorExpectingBinaryMessage(value: protocolErrorExpectingBinaryMessage, _: Partial<protocolErrorExpectingBinaryMessageInputParams>) {
+    return value;
+}
+export interface protocolErrorDecodeMessageErrorInputParams {
+}
+export function protocolErrorDecodeMessageError(_: protocolErrorDecodeMessageErrorInputParams = {}): protocolErrorDecodeMessageError {
+    return {
+        _name: 'protocol.protocolErrorDecodeMessageError'
+    };
+}
+export function encodeProtocolErrorDecodeMessageError(__s: ISerializer, _: protocolErrorDecodeMessageError) {
+    __s.writeInt32(379912031);
+}
+export function decodeProtocolErrorDecodeMessageError(__d: IDeserializer): protocolErrorDecodeMessageError | null {
+    const __id = __d.readInt32();
+    /**
+     * decode header
+     */
+    if(__id !== 379912031) return null;
+    return {
+        _name: 'protocol.protocolErrorDecodeMessageError',
+    };
+}
+export interface protocolErrorDecodeMessageError  {
+    _name: 'protocol.protocolErrorDecodeMessageError';
+}
+export function defaultProtocolErrorDecodeMessageError(params: Partial<protocolErrorDecodeMessageErrorInputParams> = {}): protocolErrorDecodeMessageError {
+    return protocolErrorDecodeMessageError({
+        ...params
+    });
+}
+export function compareProtocolErrorDecodeMessageError(__a: protocolErrorDecodeMessageError, __b: protocolErrorDecodeMessageError): boolean {
+    return true;
+}
+export function updateProtocolErrorDecodeMessageError(value: protocolErrorDecodeMessageError, _: Partial<protocolErrorDecodeMessageErrorInputParams>) {
+    return value;
+}
 export interface messageProtocolErrorInputParams {
-    error: Readonly<Error>;
+    error: Readonly<ProtocolError>;
 }
 export function messageProtocolError(params: messageProtocolErrorInputParams): messageProtocolError {
     return {
@@ -402,26 +600,26 @@ export function messageProtocolError(params: messageProtocolErrorInputParams): m
     };
 }
 export function encodeMessageProtocolError(__s: ISerializer, value: messageProtocolError) {
-    __s.writeInt32(-1084468548);
+    __s.writeInt32(-765870960);
     /**
      * encoding param: error
      */
     const __pv0 = value['error'];
-    encodeErrorTrait4(__s,__pv0);
+    encodeProtocolErrorTrait(__s,__pv0);
 }
 export function decodeMessageProtocolError(__d: IDeserializer): messageProtocolError | null {
     const __id = __d.readInt32();
     /**
      * decode header
      */
-    if(__id !== -1084468548) return null;
-    let error: Error;
+    if(__id !== -765870960) return null;
+    let error: ProtocolError;
     /**
      * decoding param: error
      */
-    const tmp2 = decodeErrorTrait5(__d);
-    if(tmp2 === null) return null;
-    error = tmp2;
+    const __tmp1 = decodeProtocolErrorTrait(__d);
+    if(__tmp1 === null) return null;
+    error = __tmp1;
     return {
         _name: 'protocol.messageProtocolError',
         error
@@ -429,11 +627,11 @@ export function decodeMessageProtocolError(__d: IDeserializer): messageProtocolE
 }
 export interface messageProtocolError  {
     _name: 'protocol.messageProtocolError';
-    error: Readonly<Error>;
+    error: Readonly<ProtocolError>;
 }
 export function defaultMessageProtocolError(params: Partial<messageProtocolErrorInputParams> = {}): messageProtocolError {
     return messageProtocolError({
-        error: defaultErrorTrait(),
+        error: defaultProtocolErrorTrait(),
         ...params
     });
 }
@@ -442,12 +640,12 @@ export function compareMessageProtocolError(__a: messageProtocolError, __b: mess
         /**
          * compare parameter error
          */
-        compareErrorTrait7(__a['error'],__b['error'])
+        compareProtocolErrorTrait(__a['error'],__b['error'])
     );
 }
 export function updateMessageProtocolError(value: messageProtocolError, changes: Partial<messageProtocolErrorInputParams>) {
     if(typeof changes['error'] !== 'undefined') {
-        if(!(compareErrorTrait8(changes['error'],value['error']))) {
+        if(!(compareProtocolErrorTrait(changes['error'],value['error']))) {
             value = messageProtocolError({
                 ...value,
                 error: changes['error'],
@@ -471,7 +669,7 @@ export function encodeAckMessage(__s: ISerializer, value: ackMessage) {
      * encoding param: messageId
      */
     const __pv0 = value['messageId'];
-    __s.writeSignedLong(__pv0);
+    __s.writeUnsignedLong(__pv0);
 }
 export function decodeAckMessage(__d: IDeserializer): ackMessage | null {
     const __id = __d.readInt32();
@@ -483,7 +681,7 @@ export function decodeAckMessage(__d: IDeserializer): ackMessage | null {
     /**
      * decoding param: messageId
      */
-    messageId = __d.readSignedLong();
+    messageId = __d.readUnsignedLong();
     return {
         _name: 'protocol.ackMessage',
         messageId

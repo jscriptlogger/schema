@@ -12,16 +12,33 @@
   "scripts": {
     "test": "TS_NODE_PROJECT=test/tsconfig.json npx sarg --require ts-node/register \"test/**/*.ts\"",
     "test:coverage": "npx nyc yarn test",
+    "build": "npx tsc -b src --force",
+    "build:es": "npx tsc --project src --module ESNext --outDir es",
+    "set-es-paths": "yarn run build:es && npx package-utilities --set-es-paths --include \"src/**/*.js\" --es-folder es",
     "schema": "npx jsbuffer schema -o src --extends tsconfig.base.json",
-    "prepublishOnly": "yarn run schema && npx tsc -b src converter && yarn test"
+    "prepublishOnly": "yarn run schema && yarn run build && yarn run build:es && yarn test && yarn run set-es-paths"
   },
   "devDependencies": {
     "@types/chai": "^4.3.5",
     "@types/node": "18.x",
     "chai": "^4.3.7",
     "nyc": "15.x",
+    "package-utilities": "^0.0.6",
     "sarg": "5.x",
     "ts-node": "10.x",
     "typescript": "5.x"
+  },
+  "browser": {
+    "./src/void.js": "./es/src/void.js",
+    "./src/value.js": "./es/src/value.js",
+    "./src/schema.js": "./es/src/schema.js",
+    "./src/protocol.js": "./es/src/protocol.js",
+    "./src/page.js": "./es/src/page.js",
+    "./src/objectId.js": "./es/src/objectId.js",
+    "./src/__types__.js": "./es/src/__types__.js",
+    "./src/Value.js": "./es/src/Value.js",
+    "./src/Result.js": "./es/src/Result.js",
+    "./src/Request.js": "./es/src/Request.js",
+    "./src/Error.js": "./es/src/Error.js"
   }
 }

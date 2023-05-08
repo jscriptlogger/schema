@@ -1,11 +1,8 @@
 import {ISerializer} from "./__types__";
 import {IDeserializer} from "./__types__";
-export type Error = Readonly<errorMessageDecodingFailure> | Readonly<errorDatabaseFailure> | Readonly<errorUnknownFailure> | Readonly<errorCallNotImplemented>;
+export type Error = Readonly<errorDatabaseFailure> | Readonly<errorUnknownFailure> | Readonly<errorCallNotImplemented>;
 export function encodeErrorTrait(__s: ISerializer,value: Error) {
     switch(value._name) {
-        case 'error.errorMessageDecodingFailure':
-            encodeErrorMessageDecodingFailure(__s,value);
-            break;
         case 'error.errorDatabaseFailure':
             encodeErrorDatabaseFailure(__s,value);
             break;
@@ -20,14 +17,8 @@ export function encodeErrorTrait(__s: ISerializer,value: Error) {
 export function decodeErrorTrait(__d: IDeserializer) {
     const __id = __d.readInt32();
     __d.rewindInt32();
-    let value: errorMessageDecodingFailure | errorDatabaseFailure | errorUnknownFailure | errorCallNotImplemented;
+    let value: errorDatabaseFailure | errorUnknownFailure | errorCallNotImplemented;
     switch(__id) {
-        case -244340814: {
-            const tmp = decodeErrorMessageDecodingFailure(__d);
-            if(tmp === null) return null;
-            value = tmp;
-            break;
-        }
         case 973517373: {
             const tmp = decodeErrorDatabaseFailure(__d);
             if(tmp === null) return null;
@@ -51,13 +42,10 @@ export function decodeErrorTrait(__d: IDeserializer) {
     return value;
 }
 export function defaultErrorTrait() {
-    return defaultErrorMessageDecodingFailure();
+    return defaultErrorDatabaseFailure();
 }
 export function compareErrorTrait(__a: Error, __b: Error) {
     switch(__a._name) {
-        case 'error.errorMessageDecodingFailure':
-            if(__b._name !== "error.errorMessageDecodingFailure") return false;
-            return compareErrorMessageDecodingFailure(__a,__b);
         case 'error.errorDatabaseFailure':
             if(__b._name !== "error.errorDatabaseFailure") return false;
             return compareErrorDatabaseFailure(__a,__b);
@@ -68,40 +56,6 @@ export function compareErrorTrait(__a: Error, __b: Error) {
             if(__b._name !== "error.errorCallNotImplemented") return false;
             return compareErrorCallNotImplemented(__a,__b);
     }
-}
-export interface errorMessageDecodingFailureInputParams {
-}
-export function errorMessageDecodingFailure(_: errorMessageDecodingFailureInputParams = {}): errorMessageDecodingFailure {
-    return {
-        _name: 'error.errorMessageDecodingFailure'
-    };
-}
-export function encodeErrorMessageDecodingFailure(__s: ISerializer, _: errorMessageDecodingFailure) {
-    __s.writeInt32(-244340814);
-}
-export function decodeErrorMessageDecodingFailure(__d: IDeserializer): errorMessageDecodingFailure | null {
-    const __id = __d.readInt32();
-    /**
-     * decode header
-     */
-    if(__id !== -244340814) return null;
-    return {
-        _name: 'error.errorMessageDecodingFailure',
-    };
-}
-export interface errorMessageDecodingFailure  {
-    _name: 'error.errorMessageDecodingFailure';
-}
-export function defaultErrorMessageDecodingFailure(params: Partial<errorMessageDecodingFailureInputParams> = {}): errorMessageDecodingFailure {
-    return errorMessageDecodingFailure({
-        ...params
-    });
-}
-export function compareErrorMessageDecodingFailure(__a: errorMessageDecodingFailure, __b: errorMessageDecodingFailure): boolean {
-    return true;
-}
-export function updateErrorMessageDecodingFailure(value: errorMessageDecodingFailure, _: Partial<errorMessageDecodingFailureInputParams>) {
-    return value;
 }
 export interface errorDatabaseFailureInputParams {
 }
