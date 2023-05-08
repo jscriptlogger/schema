@@ -87,21 +87,30 @@ export function compareMessageTrait(__a: Message, __b: Message) {
       return compareMessageProtocolError(__a,__b);
   }
 }
-export type ClientMessage = Readonly<messageRequest>;
+export type ClientMessage = Readonly<messageRequest> | Readonly<ackMessage>;
 export function encodeClientMessageTrait(__s: ISerializer,value: ClientMessage) {
   switch(value._name) {
     case 'protocol.messageRequest':
       encodeMessageRequest(__s,value);
+      break;
+    case 'protocol.ackMessage':
+      encodeAckMessage(__s,value);
       break;
   }
 }
 export function decodeClientMessageTrait(__d: IDeserializer) {
   const __id = __d.readInt32();
   __d.rewindInt32();
-  let value: messageRequest;
+  let value: messageRequest | ackMessage;
   switch(__id) {
     case -1155148981: {
       const tmp = decodeMessageRequest(__d);
+      if(tmp === null) return null;
+      value = tmp;
+      break;
+    }
+    case 2081880862: {
+      const tmp = decodeAckMessage(__d);
       if(tmp === null) return null;
       value = tmp;
       break;
@@ -118,9 +127,12 @@ export function compareClientMessageTrait(__a: ClientMessage, __b: ClientMessage
     case 'protocol.messageRequest':
       if(__b._name !== "protocol.messageRequest") return false;
       return compareMessageRequest(__a,__b);
+    case 'protocol.ackMessage':
+      if(__b._name !== "protocol.ackMessage") return false;
+      return compareAckMessage(__a,__b);
   }
 }
-export type ServerMessage = Readonly<messageResultSuccess> | Readonly<messageResultError> | Readonly<messageProtocolError>;
+export type ServerMessage = Readonly<messageResultSuccess> | Readonly<messageResultError> | Readonly<messageProtocolError> | Readonly<ackMessage>;
 export function encodeServerMessageTrait(__s: ISerializer,value: ServerMessage) {
   switch(value._name) {
     case 'protocol.messageResultSuccess':
@@ -132,12 +144,15 @@ export function encodeServerMessageTrait(__s: ISerializer,value: ServerMessage) 
     case 'protocol.messageProtocolError':
       encodeMessageProtocolError(__s,value);
       break;
+    case 'protocol.ackMessage':
+      encodeAckMessage(__s,value);
+      break;
   }
 }
 export function decodeServerMessageTrait(__d: IDeserializer) {
   const __id = __d.readInt32();
   __d.rewindInt32();
-  let value: messageResultSuccess | messageResultError | messageProtocolError;
+  let value: messageResultSuccess | messageResultError | messageProtocolError | ackMessage;
   switch(__id) {
     case -1223033196: {
       const tmp = decodeMessageResultSuccess(__d);
@@ -153,6 +168,12 @@ export function decodeServerMessageTrait(__d: IDeserializer) {
     }
     case -765870960: {
       const tmp = decodeMessageProtocolError(__d);
+      if(tmp === null) return null;
+      value = tmp;
+      break;
+    }
+    case 2081880862: {
+      const tmp = decodeAckMessage(__d);
       if(tmp === null) return null;
       value = tmp;
       break;
@@ -175,6 +196,9 @@ export function compareServerMessageTrait(__a: ServerMessage, __b: ServerMessage
     case 'protocol.messageProtocolError':
       if(__b._name !== "protocol.messageProtocolError") return false;
       return compareMessageProtocolError(__a,__b);
+    case 'protocol.ackMessage':
+      if(__b._name !== "protocol.ackMessage") return false;
+      return compareAckMessage(__a,__b);
   }
 }
 export interface messageRequestInputParams {
