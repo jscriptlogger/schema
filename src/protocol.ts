@@ -87,21 +87,21 @@ export function compareMessageTrait(__a: Message, __b: Message) {
       return compareMessageProtocolError(__a,__b);
   }
 }
-export type ClientMessage = Readonly<messageRequest> | Readonly<ackMessage>;
+export type ClientMessage = Readonly<messageRequest> | Readonly<acknowledgeMessage>;
 export function encodeClientMessageTrait(__s: ISerializer,value: ClientMessage) {
   switch(value._name) {
     case 'protocol.messageRequest':
       encodeMessageRequest(__s,value);
       break;
-    case 'protocol.ackMessage':
-      encodeAckMessage(__s,value);
+    case 'protocol.acknowledgeMessage':
+      encodeAcknowledgeMessage(__s,value);
       break;
   }
 }
 export function decodeClientMessageTrait(__d: IDeserializer) {
   const __id = __d.readInt32();
   __d.rewindInt32();
-  let value: messageRequest | ackMessage;
+  let value: messageRequest | acknowledgeMessage;
   switch(__id) {
     case -1155148981: {
       const tmp = decodeMessageRequest(__d);
@@ -109,8 +109,8 @@ export function decodeClientMessageTrait(__d: IDeserializer) {
       value = tmp;
       break;
     }
-    case 2081880862: {
-      const tmp = decodeAckMessage(__d);
+    case -198537043: {
+      const tmp = decodeAcknowledgeMessage(__d);
       if(tmp === null) return null;
       value = tmp;
       break;
@@ -127,12 +127,12 @@ export function compareClientMessageTrait(__a: ClientMessage, __b: ClientMessage
     case 'protocol.messageRequest':
       if(__b._name !== "protocol.messageRequest") return false;
       return compareMessageRequest(__a,__b);
-    case 'protocol.ackMessage':
-      if(__b._name !== "protocol.ackMessage") return false;
-      return compareAckMessage(__a,__b);
+    case 'protocol.acknowledgeMessage':
+      if(__b._name !== "protocol.acknowledgeMessage") return false;
+      return compareAcknowledgeMessage(__a,__b);
   }
 }
-export type ServerMessage = Readonly<messageResultSuccess> | Readonly<messageResultError> | Readonly<messageProtocolError> | Readonly<ackMessage>;
+export type ServerMessage = Readonly<messageResultSuccess> | Readonly<messageResultError> | Readonly<messageProtocolError> | Readonly<acknowledgeMessage>;
 export function encodeServerMessageTrait(__s: ISerializer,value: ServerMessage) {
   switch(value._name) {
     case 'protocol.messageResultSuccess':
@@ -144,15 +144,15 @@ export function encodeServerMessageTrait(__s: ISerializer,value: ServerMessage) 
     case 'protocol.messageProtocolError':
       encodeMessageProtocolError(__s,value);
       break;
-    case 'protocol.ackMessage':
-      encodeAckMessage(__s,value);
+    case 'protocol.acknowledgeMessage':
+      encodeAcknowledgeMessage(__s,value);
       break;
   }
 }
 export function decodeServerMessageTrait(__d: IDeserializer) {
   const __id = __d.readInt32();
   __d.rewindInt32();
-  let value: messageResultSuccess | messageResultError | messageProtocolError | ackMessage;
+  let value: messageResultSuccess | messageResultError | messageProtocolError | acknowledgeMessage;
   switch(__id) {
     case -1223033196: {
       const tmp = decodeMessageResultSuccess(__d);
@@ -172,8 +172,8 @@ export function decodeServerMessageTrait(__d: IDeserializer) {
       value = tmp;
       break;
     }
-    case 2081880862: {
-      const tmp = decodeAckMessage(__d);
+    case -198537043: {
+      const tmp = decodeAcknowledgeMessage(__d);
       if(tmp === null) return null;
       value = tmp;
       break;
@@ -196,9 +196,9 @@ export function compareServerMessageTrait(__a: ServerMessage, __b: ServerMessage
     case 'protocol.messageProtocolError':
       if(__b._name !== "protocol.messageProtocolError") return false;
       return compareMessageProtocolError(__a,__b);
-    case 'protocol.ackMessage':
-      if(__b._name !== "protocol.ackMessage") return false;
-      return compareAckMessage(__a,__b);
+    case 'protocol.acknowledgeMessage':
+      if(__b._name !== "protocol.acknowledgeMessage") return false;
+      return compareAcknowledgeMessage(__a,__b);
   }
 }
 export interface messageRequestInputParams {
@@ -678,61 +678,88 @@ export function updateMessageProtocolError(value: messageProtocolError, changes:
   }
   return value;
 }
-export interface ackMessageInputParams {
+export interface acknowledgeMessageInputParams {
+  sessionId: string;
   messageId: string;
 }
-export function ackMessage(params: ackMessageInputParams): ackMessage {
+export function acknowledgeMessage(params: acknowledgeMessageInputParams): acknowledgeMessage {
   return {
-    _name: 'protocol.ackMessage',
+    _name: 'protocol.acknowledgeMessage',
+    sessionId: params['sessionId'],
     messageId: params['messageId']
   };
 }
-export function encodeAckMessage(__s: ISerializer, value: ackMessage) {
-  __s.writeInt32(2081880862);
+export function encodeAcknowledgeMessage(__s: ISerializer, value: acknowledgeMessage) {
+  __s.writeInt32(-198537043);
+  /**
+   * encoding param: sessionId
+   */
+  const __pv0 = value['sessionId'];
+  __s.writeUnsignedLong(__pv0);
   /**
    * encoding param: messageId
    */
-  const __pv0 = value['messageId'];
-  __s.writeUnsignedLong(__pv0);
+  const __pv1 = value['messageId'];
+  __s.writeUnsignedLong(__pv1);
 }
-export function decodeAckMessage(__d: IDeserializer): ackMessage | null {
+export function decodeAcknowledgeMessage(__d: IDeserializer): acknowledgeMessage | null {
   const __id = __d.readInt32();
   /**
    * decode header
    */
-  if(__id !== 2081880862) return null;
+  if(__id !== -198537043) return null;
+  let sessionId: string;
   let messageId: string;
+  /**
+   * decoding param: sessionId
+   */
+  sessionId = __d.readUnsignedLong();
   /**
    * decoding param: messageId
    */
   messageId = __d.readUnsignedLong();
   return {
-    _name: 'protocol.ackMessage',
+    _name: 'protocol.acknowledgeMessage',
+    sessionId,
     messageId
   };
 }
-export interface ackMessage  {
-  _name: 'protocol.ackMessage';
+export interface acknowledgeMessage  {
+  _name: 'protocol.acknowledgeMessage';
+  sessionId: string;
   messageId: string;
 }
-export function defaultAckMessage(params: Partial<ackMessageInputParams> = {}): ackMessage {
-  return ackMessage({
+export function defaultAcknowledgeMessage(params: Partial<acknowledgeMessageInputParams> = {}): acknowledgeMessage {
+  return acknowledgeMessage({
+    sessionId: "0",
     messageId: "0",
     ...params
   });
 }
-export function compareAckMessage(__a: ackMessage, __b: ackMessage): boolean {
+export function compareAcknowledgeMessage(__a: acknowledgeMessage, __b: acknowledgeMessage): boolean {
   return (
+    /**
+     * compare parameter sessionId
+     */
+    __a['sessionId'] === __b['sessionId'] &&
     /**
      * compare parameter messageId
      */
     __a['messageId'] === __b['messageId']
   );
 }
-export function updateAckMessage(value: ackMessage, changes: Partial<ackMessageInputParams>) {
+export function updateAcknowledgeMessage(value: acknowledgeMessage, changes: Partial<acknowledgeMessageInputParams>) {
+  if(typeof changes['sessionId'] !== 'undefined') {
+    if(!(changes['sessionId'] === value['sessionId'])) {
+      value = acknowledgeMessage({
+        ...value,
+        sessionId: changes['sessionId'],
+      });
+    }
+  }
   if(typeof changes['messageId'] !== 'undefined') {
     if(!(changes['messageId'] === value['messageId'])) {
-      value = ackMessage({
+      value = acknowledgeMessage({
         ...value,
         messageId: changes['messageId'],
       });
