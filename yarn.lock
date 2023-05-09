@@ -968,10 +968,10 @@ js-yaml@^3.13.1:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
-jsbuffer@^0.0.33:
-  version "0.0.33"
-  resolved "http://localhost:4873/jsbuffer/-/jsbuffer-0.0.33.tgz#f6cb59fb8d7f3dfe233a24ce66394043e5cb9b64"
-  integrity sha512-sa9PibMNlnsh0S2GeriIdg6pM/mOBmRdzoU2A4ba3xSN7OwB+6Z9fwJjRVHAcFlcynnCnymJAN3oPPT593JmDg==
+jsbuffer@0.x:
+  version "0.0.37"
+  resolved "http://localhost:4873/jsbuffer/-/jsbuffer-0.0.37.tgz#c43938fc152eee25a3f715621ed0405df16b5008"
+  integrity sha512-rTXXPuUhXZISD8OGNQ3msijJXOjgXnMQ3SFE7jPaSYNniDwzSTuAmgybxVuBUXVy2uDZfrJ0oE0I/P82pMb+yA==
   dependencies:
     cli-argument-helper "0.x"
     crc "4.x"

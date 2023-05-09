@@ -3,7 +3,7 @@
   "version": "0.0.19",
   "license": "MIT",
   "dependencies": {
-    "jsbuffer": "^0.0.33"
+    "jsbuffer": "0.x"
   },
   "files": [
     "src/**/*.{d.ts,map,js}",
