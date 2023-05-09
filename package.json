@@ -7,6 +7,7 @@
   },
   "files": [
     "src/**/*.{d.ts,map,js}",
+    "es/**/*.{d.ts,map,js}",
     "converter/**/*.{d.ts,map,js}"
   ],
   "scripts": {
@@ -38,7 +39,6 @@
     "./src/page.js": "./es/src/page.js",
     "./src/objectId.js": "./es/src/objectId.js",
     "./src/__types__.js": "./es/src/__types__.js",
-    "./src/Value.js": "./es/src/Value.js",
     "./src/Result.js": "./es/src/Result.js",
     "./src/Request.js": "./es/src/Request.js",
     "./src/Error.js": "./es/src/Error.js"
