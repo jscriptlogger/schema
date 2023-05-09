@@ -12,8 +12,10 @@
   "scripts": {
     "test": "TS_NODE_PROJECT=test/tsconfig.json npx sarg --require ts-node/register \"test/**/*.ts\"",
     "test:coverage": "npx nyc yarn test",
-    "build": "npx tsc -b src --force",
-    "build:es": "npx tsc --project src --module ESNext --outDir es",
+    "build": "npx tsc -b src converter --force",
+    "build:es": "yarn run build:es:src && yarn run build:es:converter",
+    "build:es:src": "npx tsc --project src --module ESNext --outDir es",
+    "build:es:converter": "npx tsc --project converter --module ESNext --outDir es",
     "set-es-paths": "yarn run build:es && npx package-utilities --set-es-paths --include \"src/**/*.js\" --es-folder es",
     "schema": "npx jsbuffer schema -o src --extends tsconfig.base.json --indentation-size 2",
     "prepublishOnly": "yarn run schema && yarn run build && yarn run build:es && yarn test && yarn run set-es-paths"
