@@ -9,7 +9,7 @@ import {
   valueString,
   valueUndefined,
   valueVector,
-} from '../src/value';
+} from '../src/app/value';
 
 export class ConversionException {}
 
