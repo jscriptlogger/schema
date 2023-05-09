@@ -4,14 +4,14 @@
         "noUnusedLocals": false
     },
     "include": [
-        "./Error.ts",
-        "./value.ts",
-        "./objectId.ts",
-        "./Result.ts",
-        "./Request.ts",
-        "./void.ts",
-        "./page.ts",
-        "./protocol.ts",
+        "./app/value.ts",
+        "./app/objectId.ts",
+        "./protocol/Result.ts",
+        "./protocol/Request.ts",
+        "./app/page.ts",
+        "./protocol/void.ts",
+        "./protocol/Error.ts",
+        "./protocol/index.ts",
         "./schema.ts",
         "./__types__.ts"
     ],

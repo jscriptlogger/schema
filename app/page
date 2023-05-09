@@ -1,6 +1,6 @@
-import { Request } from "./Request";
-import { Result } from "./Result";
-import { void_t } from "./void";
+import { Request } from "../protocol/Request";
+import { Result } from "../protocol/Result";
+import { void_t } from "../protocol/void";
 import { objectId } from "./objectId";
 import { Value } from "./value";
 

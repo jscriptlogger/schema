@@ -1,6 +1,6 @@
 import { objectId } from "./objectId";
-import { Result } from "./Result";
-import { Request } from "./Request";
+import { Result } from "../protocol/Result";
+import { Request } from "../protocol/Request";
 
 trait ObjectKey {}
 
