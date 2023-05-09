@@ -32,15 +32,15 @@
     "typescript": "5.x"
   },
   "browser": {
-    "./src/void.js": "./es/src/void.js",
-    "./src/value.js": "./es/src/value.js",
     "./src/schema.js": "./es/src/schema.js",
-    "./src/protocol.js": "./es/src/protocol.js",
-    "./src/page.js": "./es/src/page.js",
-    "./src/objectId.js": "./es/src/objectId.js",
     "./src/__types__.js": "./es/src/__types__.js",
-    "./src/Result.js": "./es/src/Result.js",
-    "./src/Request.js": "./es/src/Request.js",
-    "./src/Error.js": "./es/src/Error.js"
+    "./src/protocol/void.js": "./es/src/protocol/void.js",
+    "./src/protocol/index.js": "./es/src/protocol/index.js",
+    "./src/protocol/Result.js": "./es/src/protocol/Result.js",
+    "./src/protocol/Request.js": "./es/src/protocol/Request.js",
+    "./src/protocol/Error.js": "./es/src/protocol/Error.js",
+    "./src/app/value.js": "./es/src/app/value.js",
+    "./src/app/page.js": "./es/src/app/page.js",
+    "./src/app/objectId.js": "./es/src/app/objectId.js"
   }
 }
