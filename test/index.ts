@@ -1,7 +1,7 @@
 import { Suite } from 'sarg';
 import { expect } from 'chai';
 import convert from '../converter';
-import { valueNumber, valueObject, valueString } from '../src/value';
+import { valueNumber, valueObject, valueString } from '../src/app/value';
 
 const suite = new Suite();
 
