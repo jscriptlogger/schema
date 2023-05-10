@@ -8,6 +8,10 @@ trait ClientMessage {}
 
 trait ServerMessage {}
 
+type newSessionCreated : ServerMessage {
+  ulong id;
+}
+
 type messageRequest : Message, ClientMessage {
   ulong requestId;
   ulong sessionId;

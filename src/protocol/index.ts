@@ -132,9 +132,12 @@ export function compareClientMessageTrait(__a: ClientMessage, __b: ClientMessage
       return compareAcknowledgeMessage(__a,__b);
   }
 }
-export type ServerMessage = Readonly<messageResultSuccess> | Readonly<messageResultError> | Readonly<messageProtocolError> | Readonly<acknowledgeMessage>;
+export type ServerMessage = Readonly<newSessionCreated> | Readonly<messageResultSuccess> | Readonly<messageResultError> | Readonly<messageProtocolError> | Readonly<acknowledgeMessage>;
 export function encodeServerMessageTrait(__s: ISerializer,value: ServerMessage) {
   switch(value._name) {
+    case 'protocol.index.newSessionCreated':
+      encodeNewSessionCreated(__s,value);
+      break;
     case 'protocol.index.messageResultSuccess':
       encodeMessageResultSuccess(__s,value);
       break;
@@ -152,8 +155,14 @@ export function encodeServerMessageTrait(__s: ISerializer,value: ServerMessage) 
 export function decodeServerMessageTrait(__d: IDeserializer) {
   const __id = __d.readInt32();
   __d.rewindInt32();
-  let value: messageResultSuccess | messageResultError | messageProtocolError | acknowledgeMessage;
+  let value: newSessionCreated | messageResultSuccess | messageResultError | messageProtocolError | acknowledgeMessage;
   switch(__id) {
+    case 907759432: {
+      const tmp = decodeNewSessionCreated(__d);
+      if(tmp === null) return null;
+      value = tmp;
+      break;
+    }
     case 1815282765: {
       const tmp = decodeMessageResultSuccess(__d);
       if(tmp === null) return null;
@@ -183,10 +192,13 @@ export function decodeServerMessageTrait(__d: IDeserializer) {
   return value;
 }
 export function defaultServerMessageTrait() {
-  return defaultMessageResultSuccess();
+  return defaultNewSessionCreated();
 }
 export function compareServerMessageTrait(__a: ServerMessage, __b: ServerMessage) {
   switch(__a._name) {
+    case 'protocol.index.newSessionCreated':
+      if(__b._name !== "protocol.index.newSessionCreated") return false;
+      return compareNewSessionCreated(__a,__b);
     case 'protocol.index.messageResultSuccess':
       if(__b._name !== "protocol.index.messageResultSuccess") return false;
       return compareMessageResultSuccess(__a,__b);
@@ -200,6 +212,68 @@ export function compareServerMessageTrait(__a: ServerMessage, __b: ServerMessage
       if(__b._name !== "protocol.index.acknowledgeMessage") return false;
       return compareAcknowledgeMessage(__a,__b);
   }
+}
+export interface newSessionCreatedInputParams {
+  id: string;
+}
+export function newSessionCreated(params: newSessionCreatedInputParams): newSessionCreated {
+  return {
+    _name: 'protocol.index.newSessionCreated',
+    id: params['id']
+  };
+}
+export function encodeNewSessionCreated(__s: ISerializer, value: newSessionCreated) {
+  __s.writeInt32(907759432);
+  /**
+   * encoding param: id
+   */
+  const __pv0 = value['id'];
+  __s.writeUnsignedLong(__pv0);
+}
+export function decodeNewSessionCreated(__d: IDeserializer): newSessionCreated | null {
+  const __id = __d.readInt32();
+  /**
+   * decode header
+   */
+  if(__id !== 907759432) return null;
+  let id: string;
+  /**
+   * decoding param: id
+   */
+  id = __d.readUnsignedLong();
+  return {
+    _name: 'protocol.index.newSessionCreated',
+    id
+  };
+}
+export interface newSessionCreated  {
+  _name: 'protocol.index.newSessionCreated';
+  id: string;
+}
+export function defaultNewSessionCreated(params: Partial<newSessionCreatedInputParams> = {}): newSessionCreated {
+  return newSessionCreated({
+    id: "0",
+    ...params
+  });
+}
+export function compareNewSessionCreated(__a: newSessionCreated, __b: newSessionCreated): boolean {
+  return (
+    /**
+     * compare parameter id
+     */
+    __a['id'] === __b['id']
+  );
+}
+export function updateNewSessionCreated(value: newSessionCreated, changes: Partial<newSessionCreatedInputParams>) {
+  if(typeof changes['id'] !== 'undefined') {
+    if(!(changes['id'] === value['id'])) {
+      value = newSessionCreated({
+        ...value,
+        id: changes['id'],
+      });
+    }
+  }
+  return value;
 }
 export interface messageRequestInputParams {
   requestId: string;
