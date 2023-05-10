@@ -865,15 +865,17 @@ export function updatePageLine(value: pageLine, changes: Partial<pageLineInputPa
 }
 export interface getPageLinesResultInputParams {
   list: ReadonlyArray<Readonly<pageLine>>;
+  count: string;
 }
 export function getPageLinesResult(params: getPageLinesResultInputParams): getPageLinesResult {
   return {
     _name: 'app.page.getPageLinesResult',
-    list: params['list']
+    list: params['list'],
+    count: params['count']
   };
 }
 export function encodeGetPageLinesResult(__s: ISerializer, value: getPageLinesResult) {
-  __s.writeInt32(-2083248150);
+  __s.writeInt32(1289300006);
   /**
    * encoding param: list
    */
@@ -884,14 +886,20 @@ export function encodeGetPageLinesResult(__s: ISerializer, value: getPageLinesRe
     const __v__i1 = __pv0[__i1];
     encodePageLine(__s,__v__i1);
   }
+  /**
+   * encoding param: count
+   */
+  const __pv2 = value['count'];
+  __s.writeUnsignedLong(__pv2);
 }
 export function decodeGetPageLinesResult(__d: IDeserializer): getPageLinesResult | null {
   const __id = __d.readInt32();
   /**
    * decode header
    */
-  if(__id !== -2083248150) return null;
+  if(__id !== 1289300006) return null;
   let list: Array<pageLine>;
+  let count: string;
   /**
    * decoding param: list
    */
@@ -903,18 +911,25 @@ export function decodeGetPageLinesResult(__d: IDeserializer): getPageLinesResult
     if(__tmp2 === null) return null;
     oindex1[index1] = __tmp2;
   }
+  /**
+   * decoding param: count
+   */
+  count = __d.readUnsignedLong();
   return {
     _name: 'app.page.getPageLinesResult',
-    list
+    list,
+    count
   };
 }
 export interface getPageLinesResult  {
   _name: 'app.page.getPageLinesResult';
   list: ReadonlyArray<Readonly<pageLine>>;
+  count: string;
 }
 export function defaultGetPageLinesResult(params: Partial<getPageLinesResultInputParams> = {}): getPageLinesResult {
   return getPageLinesResult({
     list: [],
+    count: "0",
     ...params
   });
 }
@@ -923,7 +938,11 @@ export function compareGetPageLinesResult(__a: getPageLinesResult, __b: getPageL
     /**
      * compare parameter list
      */
-    __a['list'].length === __b['list'].length && __a['list'].every((__i,index) => (comparePageLine(__i,__b['list'][index])))
+    __a['list'].length === __b['list'].length && __a['list'].every((__i,index) => (comparePageLine(__i,__b['list'][index]))) &&
+    /**
+     * compare parameter count
+     */
+    __a['count'] === __b['count']
   );
 }
 export function updateGetPageLinesResult(value: getPageLinesResult, changes: Partial<getPageLinesResultInputParams>) {
@@ -932,6 +951,14 @@ export function updateGetPageLinesResult(value: getPageLinesResult, changes: Par
       value = getPageLinesResult({
         ...value,
         list: changes['list'],
+      });
+    }
+  }
+  if(typeof changes['count'] !== 'undefined') {
+    if(!(changes['count'] === value['count'])) {
+      value = getPageLinesResult({
+        ...value,
+        count: changes['count'],
       });
     }
   }

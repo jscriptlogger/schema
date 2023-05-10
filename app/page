@@ -49,6 +49,7 @@ type pageLine {
 
 export type getPageLinesResult : Result {
   vector<pageLine> list;
+  ulong count;
 }
 
 export call GetPageLines : Request => getPageLinesResult {
