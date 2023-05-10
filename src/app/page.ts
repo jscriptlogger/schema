@@ -572,15 +572,17 @@ export function updatePage(value: page, changes: Partial<pageInputParams>) {
 }
 export interface getPagesResultInputParams {
   list: ReadonlyArray<Readonly<page>>;
+  count: string;
 }
 export function getPagesResult(params: getPagesResultInputParams): getPagesResult {
   return {
     _name: 'app.page.getPagesResult',
-    list: params['list']
+    list: params['list'],
+    count: params['count']
   };
 }
 export function encodeGetPagesResult(__s: ISerializer, value: getPagesResult) {
-  __s.writeInt32(464543652);
+  __s.writeInt32(-581286104);
   /**
    * encoding param: list
    */
@@ -591,14 +593,20 @@ export function encodeGetPagesResult(__s: ISerializer, value: getPagesResult) {
     const __v__i1 = __pv0[__i1];
     encodePage(__s,__v__i1);
   }
+  /**
+   * encoding param: count
+   */
+  const __pv2 = value['count'];
+  __s.writeUnsignedLong(__pv2);
 }
 export function decodeGetPagesResult(__d: IDeserializer): getPagesResult | null {
   const __id = __d.readInt32();
   /**
    * decode header
    */
-  if(__id !== 464543652) return null;
+  if(__id !== -581286104) return null;
   let list: Array<page>;
+  let count: string;
   /**
    * decoding param: list
    */
@@ -610,18 +618,25 @@ export function decodeGetPagesResult(__d: IDeserializer): getPagesResult | null 
     if(__tmp2 === null) return null;
     oindex1[index1] = __tmp2;
   }
+  /**
+   * decoding param: count
+   */
+  count = __d.readUnsignedLong();
   return {
     _name: 'app.page.getPagesResult',
-    list
+    list,
+    count
   };
 }
 export interface getPagesResult  {
   _name: 'app.page.getPagesResult';
   list: ReadonlyArray<Readonly<page>>;
+  count: string;
 }
 export function defaultGetPagesResult(params: Partial<getPagesResultInputParams> = {}): getPagesResult {
   return getPagesResult({
     list: [],
+    count: "0",
     ...params
   });
 }
@@ -630,7 +645,11 @@ export function compareGetPagesResult(__a: getPagesResult, __b: getPagesResult):
     /**
      * compare parameter list
      */
-    __a['list'].length === __b['list'].length && __a['list'].every((__i,index) => (comparePage(__i,__b['list'][index])))
+    __a['list'].length === __b['list'].length && __a['list'].every((__i,index) => (comparePage(__i,__b['list'][index]))) &&
+    /**
+     * compare parameter count
+     */
+    __a['count'] === __b['count']
   );
 }
 export function updateGetPagesResult(value: getPagesResult, changes: Partial<getPagesResultInputParams>) {
@@ -639,6 +658,14 @@ export function updateGetPagesResult(value: getPagesResult, changes: Partial<get
       value = getPagesResult({
         ...value,
         list: changes['list'],
+      });
+    }
+  }
+  if(typeof changes['count'] !== 'undefined') {
+    if(!(changes['count'] === value['count'])) {
+      value = getPagesResult({
+        ...value,
+        count: changes['count'],
       });
     }
   }
