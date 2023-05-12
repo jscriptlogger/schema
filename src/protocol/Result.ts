@@ -78,7 +78,7 @@ export function decodeResultTrait(__d: IDeserializer) {
       value = tmp;
       break;
     }
-    case -1931922982: {
+    case 142654375: {
       const tmp = decodeGetFirstPageFromTitleResult(__d);
       if(tmp === null) return null;
       value = tmp;

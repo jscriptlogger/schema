@@ -32,23 +32,22 @@ import {compareObjectId as compareObjectId16} from "./objectId";
 import {compareObjectId as compareObjectId17} from "./objectId";
 import {encodeObjectId as encodeObjectId18} from "./objectId";
 import {decodeObjectId as decodeObjectId19} from "./objectId";
-import {defaultObjectId as defaultObjectId20} from "./objectId";
+import {compareObjectId as compareObjectId20} from "./objectId";
 import {compareObjectId as compareObjectId21} from "./objectId";
-import {compareObjectId as compareObjectId22} from "./objectId";
-import {encodeObjectId as encodeObjectId23} from "./objectId";
-import {encodeValueTrait as encodeValueTrait24} from "./value";
-import {decodeObjectId as decodeObjectId25} from "./objectId";
-import {decodeValueTrait as decodeValueTrait26} from "./value";
-import {defaultObjectId as defaultObjectId27} from "./objectId";
-import {compareObjectId as compareObjectId28} from "./objectId";
-import {compareValueTrait as compareValueTrait29} from "./value";
-import {compareObjectId as compareObjectId30} from "./objectId";
-import {compareValueTrait as compareValueTrait31} from "./value";
-import {encodeObjectId as encodeObjectId32} from "./objectId";
-import {decodeObjectId as decodeObjectId33} from "./objectId";
-import {defaultObjectId as defaultObjectId34} from "./objectId";
+import {encodeObjectId as encodeObjectId22} from "./objectId";
+import {encodeValueTrait as encodeValueTrait23} from "./value";
+import {decodeObjectId as decodeObjectId24} from "./objectId";
+import {decodeValueTrait as decodeValueTrait25} from "./value";
+import {defaultObjectId as defaultObjectId26} from "./objectId";
+import {compareObjectId as compareObjectId27} from "./objectId";
+import {compareValueTrait as compareValueTrait28} from "./value";
+import {compareObjectId as compareObjectId29} from "./objectId";
+import {compareValueTrait as compareValueTrait30} from "./value";
+import {encodeObjectId as encodeObjectId31} from "./objectId";
+import {decodeObjectId as decodeObjectId32} from "./objectId";
+import {defaultObjectId as defaultObjectId33} from "./objectId";
+import {compareObjectId as compareObjectId34} from "./objectId";
 import {compareObjectId as compareObjectId35} from "./objectId";
-import {compareObjectId as compareObjectId36} from "./objectId";
 export interface createPageResultInputParams {
   id: Readonly<objectId>;
 }
@@ -576,7 +575,7 @@ export function updatePage(value: page, changes: Partial<pageInputParams>) {
   return value;
 }
 export interface getFirstPageFromTitleResultInputParams {
-  id: Readonly<objectId>;
+  id: Readonly<objectId> | null;
 }
 export function getFirstPageFromTitleResult(params: getFirstPageFromTitleResultInputParams): getFirstPageFromTitleResult {
   return {
@@ -585,26 +584,35 @@ export function getFirstPageFromTitleResult(params: getFirstPageFromTitleResultI
   };
 }
 export function encodeGetFirstPageFromTitleResult(__s: ISerializer, value: getFirstPageFromTitleResult) {
-  __s.writeInt32(-1931922982);
+  __s.writeInt32(142654375);
   /**
    * encoding param: id
    */
   const __pv0 = value['id'];
-  encodeObjectId18(__s,__pv0);
+  if(__pv0 === null) {
+    __s.writeUint8(0);
+  } else {
+    __s.writeUint8(1);
+    encodeObjectId18(__s,__pv0);
+  }
 }
 export function decodeGetFirstPageFromTitleResult(__d: IDeserializer): getFirstPageFromTitleResult | null {
   const __id = __d.readInt32();
   /**
    * decode header
    */
-  if(__id !== -1931922982) return null;
-  let id: objectId;
+  if(__id !== 142654375) return null;
+  let id: objectId | null;
   /**
    * decoding param: id
    */
-  const tmp2 = decodeObjectId19(__d);
-  if(tmp2 === null) return null;
-  id = tmp2;
+  if(__d.readUint8() === 1) {
+    const tmp3 = decodeObjectId19(__d);
+    if(tmp3 === null) return null;
+    id = tmp3;
+  } else {
+    id = null;
+  }
   return {
     _name: 'app.page.getFirstPageFromTitleResult',
     id
@@ -612,11 +620,11 @@ export function decodeGetFirstPageFromTitleResult(__d: IDeserializer): getFirstP
 }
 export interface getFirstPageFromTitleResult  {
   _name: 'app.page.getFirstPageFromTitleResult';
-  id: Readonly<objectId>;
+  id: Readonly<objectId> | null;
 }
 export function defaultGetFirstPageFromTitleResult(params: Partial<getFirstPageFromTitleResultInputParams> = {}): getFirstPageFromTitleResult {
   return getFirstPageFromTitleResult({
-    id: defaultObjectId(),
+    id: null,
     ...params
   });
 }
@@ -625,12 +633,12 @@ export function compareGetFirstPageFromTitleResult(__a: getFirstPageFromTitleRes
     /**
      * compare parameter id
      */
-    compareObjectId21(__a['id'],__b['id'])
+    ((__dp01, __dp02) => __dp01 !== null && __dp02 !== null ? compareObjectId20(__dp01,__dp02) : __dp01 === __dp02)(__a['id'],__b['id'])
   );
 }
 export function updateGetFirstPageFromTitleResult(value: getFirstPageFromTitleResult, changes: Partial<getFirstPageFromTitleResultInputParams>) {
   if(typeof changes['id'] !== 'undefined') {
-    if(!(compareObjectId22(changes['id'],value['id']))) {
+    if(!(((__dp01, __dp02) => __dp01 !== null && __dp02 !== null ? compareObjectId21(__dp01,__dp02) : __dp01 === __dp02)(changes['id'],value['id']))) {
       value = getFirstPageFromTitleResult({
         ...value,
         id: changes['id'],
@@ -908,7 +916,7 @@ export function encodePageLine(__s: ISerializer, value: pageLine) {
    * encoding param: id
    */
   const __pv0 = value['id'];
-  encodeObjectId23(__s,__pv0);
+  encodeObjectId22(__s,__pv0);
   /**
    * encoding param: values
    */
@@ -917,7 +925,7 @@ export function encodePageLine(__s: ISerializer, value: pageLine) {
   __s.writeUint32(__l2);
   for(let __i2 = 0; __i2 < __l2; __i2++) {
     const __v__i2 = __pv1[__i2];
-    encodeValueTrait24(__s,__v__i2);
+    encodeValueTrait23(__s,__v__i2);
   }
 }
 export function decodePageLine(__d: IDeserializer): pageLine | null {
@@ -931,7 +939,7 @@ export function decodePageLine(__d: IDeserializer): pageLine | null {
   /**
    * decoding param: id
    */
-  const tmp2 = decodeObjectId25(__d);
+  const tmp2 = decodeObjectId24(__d);
   if(tmp2 === null) return null;
   id = tmp2;
   /**
@@ -941,7 +949,7 @@ export function decodePageLine(__d: IDeserializer): pageLine | null {
   const oindex3 = new Array<Value>(iindex3);
   values = oindex3;
   for(let index3 = 0; index3 < iindex3; index3++) {
-    const tmp5 = decodeValueTrait26(__d);
+    const tmp5 = decodeValueTrait25(__d);
     if(tmp5 === null) return null;
     oindex3[index3] = tmp5;
   }
@@ -968,16 +976,16 @@ export function comparePageLine(__a: pageLine, __b: pageLine): boolean {
     /**
      * compare parameter id
      */
-    compareObjectId28(__a['id'],__b['id']) &&
+    compareObjectId27(__a['id'],__b['id']) &&
     /**
      * compare parameter values
      */
-    __a['values'].length === __b['values'].length && __a['values'].every((__i,index) => (compareValueTrait29(__i,__b['values'][index])))
+    __a['values'].length === __b['values'].length && __a['values'].every((__i,index) => (compareValueTrait28(__i,__b['values'][index])))
   );
 }
 export function updatePageLine(value: pageLine, changes: Partial<pageLineInputParams>) {
   if(typeof changes['id'] !== 'undefined') {
-    if(!(compareObjectId30(changes['id'],value['id']))) {
+    if(!(compareObjectId29(changes['id'],value['id']))) {
       value = pageLine({
         ...value,
         id: changes['id'],
@@ -985,7 +993,7 @@ export function updatePageLine(value: pageLine, changes: Partial<pageLineInputPa
     }
   }
   if(typeof changes['values'] !== 'undefined') {
-    if(!(changes['values'].length === value['values'].length && changes['values'].every((__i,index) => (compareValueTrait31(__i,value['values'][index]))))) {
+    if(!(changes['values'].length === value['values'].length && changes['values'].every((__i,index) => (compareValueTrait30(__i,value['values'][index]))))) {
       value = pageLine({
         ...value,
         values: changes['values'],
@@ -1114,7 +1122,7 @@ export function encodeGetPageLines(__s: ISerializer, value: GetPageLines) {
    * encoding param: pageId
    */
   const __pv0 = value['pageId'];
-  encodeObjectId32(__s,__pv0);
+  encodeObjectId31(__s,__pv0);
   /**
    * encoding param: offset
    */
@@ -1138,7 +1146,7 @@ export function decodeGetPageLines(__d: IDeserializer): GetPageLines | null {
   /**
    * decoding param: pageId
    */
-  const tmp2 = decodeObjectId33(__d);
+  const tmp2 = decodeObjectId32(__d);
   if(tmp2 === null) return null;
   pageId = tmp2;
   /**
@@ -1175,7 +1183,7 @@ export function compareGetPageLines(__a: GetPageLines, __b: GetPageLines): boole
     /**
      * compare parameter pageId
      */
-    compareObjectId35(__a['pageId'],__b['pageId']) &&
+    compareObjectId34(__a['pageId'],__b['pageId']) &&
     /**
      * compare parameter offset
      */
@@ -1188,7 +1196,7 @@ export function compareGetPageLines(__a: GetPageLines, __b: GetPageLines): boole
 }
 export function updateGetPageLines(value: GetPageLines, changes: Partial<GetPageLinesInputParams>) {
   if(typeof changes['pageId'] !== 'undefined') {
-    if(!(compareObjectId36(changes['pageId'],value['pageId']))) {
+    if(!(compareObjectId35(changes['pageId'],value['pageId']))) {
       value = GetPageLines({
         ...value,
         pageId: changes['pageId'],
