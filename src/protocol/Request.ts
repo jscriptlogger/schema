@@ -2,6 +2,8 @@ import {SaveValue} from "./../app/value";
 import {GetValueById} from "./../app/value";
 import {CreatePage} from "./../app/page";
 import {AddPageLine} from "./../app/page";
+import {getFirstPageFromTitleResult} from "./../app/page";
+import {GetFirstPageFromTitle} from "./../app/page";
 import {GetPages} from "./../app/page";
 import {GetPageLines} from "./../app/page";
 import {ISerializer} from "./../__types__";
@@ -9,6 +11,8 @@ import {encodeSaveValue} from "./../app/value";
 import {encodeGetValueById} from "./../app/value";
 import {encodeCreatePage} from "./../app/page";
 import {encodeAddPageLine} from "./../app/page";
+import {encodeGetFirstPageFromTitleResult} from "./../app/page";
+import {encodeGetFirstPageFromTitle} from "./../app/page";
 import {encodeGetPages} from "./../app/page";
 import {encodeGetPageLines} from "./../app/page";
 import {IDeserializer} from "./../__types__";
@@ -16,6 +20,8 @@ import {decodeSaveValue} from "./../app/value";
 import {decodeGetValueById} from "./../app/value";
 import {decodeCreatePage} from "./../app/page";
 import {decodeAddPageLine} from "./../app/page";
+import {decodeGetFirstPageFromTitleResult} from "./../app/page";
+import {decodeGetFirstPageFromTitle} from "./../app/page";
 import {decodeGetPages} from "./../app/page";
 import {decodeGetPageLines} from "./../app/page";
 import {defaultSaveValue} from "./../app/value";
@@ -23,9 +29,11 @@ import {compareSaveValue} from "./../app/value";
 import {compareGetValueById} from "./../app/value";
 import {compareCreatePage} from "./../app/page";
 import {compareAddPageLine} from "./../app/page";
+import {compareGetFirstPageFromTitleResult} from "./../app/page";
+import {compareGetFirstPageFromTitle} from "./../app/page";
 import {compareGetPages} from "./../app/page";
 import {compareGetPageLines} from "./../app/page";
-export type Request = Readonly<SaveValue> | Readonly<GetValueById> | Readonly<CreatePage> | Readonly<AddPageLine> | Readonly<GetPages> | Readonly<GetPageLines>;
+export type Request = Readonly<SaveValue> | Readonly<GetValueById> | Readonly<CreatePage> | Readonly<AddPageLine> | Readonly<getFirstPageFromTitleResult> | Readonly<GetFirstPageFromTitle> | Readonly<GetPages> | Readonly<GetPageLines>;
 export function encodeRequestTrait(__s: ISerializer,value: Request) {
   switch(value._name) {
     case 'app.value.SaveValue':
@@ -40,6 +48,12 @@ export function encodeRequestTrait(__s: ISerializer,value: Request) {
     case 'app.page.AddPageLine':
       encodeAddPageLine(__s,value);
       break;
+    case 'app.page.getFirstPageFromTitleResult':
+      encodeGetFirstPageFromTitleResult(__s,value);
+      break;
+    case 'app.page.GetFirstPageFromTitle':
+      encodeGetFirstPageFromTitle(__s,value);
+      break;
     case 'app.page.GetPages':
       encodeGetPages(__s,value);
       break;
@@ -51,7 +65,7 @@ export function encodeRequestTrait(__s: ISerializer,value: Request) {
 export function decodeRequestTrait(__d: IDeserializer) {
   const __id = __d.readInt32();
   __d.rewindInt32();
-  let value: SaveValue | GetValueById | CreatePage | AddPageLine | GetPages | GetPageLines;
+  let value: SaveValue | GetValueById | CreatePage | AddPageLine | getFirstPageFromTitleResult | GetFirstPageFromTitle | GetPages | GetPageLines;
   switch(__id) {
     case -1939500960: {
       const tmp = decodeSaveValue(__d);
@@ -73,6 +87,18 @@ export function decodeRequestTrait(__d: IDeserializer) {
     }
     case -844911121: {
       const tmp = decodeAddPageLine(__d);
+      if(tmp === null) return null;
+      value = tmp;
+      break;
+    }
+    case -1931922982: {
+      const tmp = decodeGetFirstPageFromTitleResult(__d);
+      if(tmp === null) return null;
+      value = tmp;
+      break;
+    }
+    case -622309095: {
+      const tmp = decodeGetFirstPageFromTitle(__d);
       if(tmp === null) return null;
       value = tmp;
       break;
@@ -110,6 +136,12 @@ export function compareRequestTrait(__a: Request, __b: Request) {
     case 'app.page.AddPageLine':
       if(__b._name !== "app.page.AddPageLine") return false;
       return compareAddPageLine(__a,__b);
+    case 'app.page.getFirstPageFromTitleResult':
+      if(__b._name !== "app.page.getFirstPageFromTitleResult") return false;
+      return compareGetFirstPageFromTitleResult(__a,__b);
+    case 'app.page.GetFirstPageFromTitle':
+      if(__b._name !== "app.page.GetFirstPageFromTitle") return false;
+      return compareGetFirstPageFromTitle(__a,__b);
     case 'app.page.GetPages':
       if(__b._name !== "app.page.GetPages") return false;
       return compareGetPages(__a,__b);
