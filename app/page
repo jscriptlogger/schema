@@ -32,7 +32,7 @@ type page {
   string title;
 }
 
-export type getFirstPageFromTitleResult : Request {
+export type getFirstPageFromTitleResult : Result {
   objectId id;
 }
 
