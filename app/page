@@ -33,7 +33,7 @@ type page {
 }
 
 export type getFirstPageFromTitleResult : Result {
-  objectId id;
+  optional<objectId> id;
 }
 
 export call GetFirstPageFromTitle : Request => getFirstPageFromTitleResult {
